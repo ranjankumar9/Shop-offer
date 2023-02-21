@@ -1,1 +1,1 @@
-# lovely-thing-6254
+please put all the frontend file inside the server folder.
