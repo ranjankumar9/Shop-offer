@@ -1,1 +1,1 @@
-please put all the frontend file inside the server folder.
+👉 please put all the frontend file inside the server folder.
