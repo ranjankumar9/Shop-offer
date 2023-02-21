@@ -1,2 +1,2 @@
-Client folder for Frontend
-server folder for Backend
+👉 Client folder for Frontend
+👉 server folder for Backend
