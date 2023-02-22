@@ -1,5 +1,5 @@
 const express = require("express");
-const { UserModal } = require("../Models/Client_user.model");
+const { ClientUserModel } = require("../Models/Client_user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -8,7 +8,7 @@ const userRouter = express.Router();
 userRouter.post("/register", async (req, res) => {
   try {
     const { name, email, pass } = req.body;
-    const user = await UserModal.find({ email });
+    const user = await ClientUserModel.find({ email });
     if (user.length > 0) {
       res.send({ msg: "User already exist. Please login" });
     } else {
@@ -16,7 +16,7 @@ userRouter.post("/register", async (req, res) => {
         if (err) {
           res.send({ msg: "something went wrong", err });
         }
-        const newuser = new UserModal({ name, email, pass: hash });
+        const newuser = new ClientUserModel({ name, email, pass: hash });
         await newuser.save();
         res.send({ msg: "user is registered" });
       });
@@ -29,7 +29,7 @@ userRouter.post("/register", async (req, res) => {
 userRouter.post("/login", async (req, res) => {
   const { email, pass } = req.body;
   try {
-    const loggedUser = await UserModal.find({ email });
+    const loggedUser = await ClientUserModel.find({ email });
     if (loggedUser.length > 0) {
       bcrypt.compare(pass, loggedUser[0].pass, function (err, result) {
         if (err) throw err;
