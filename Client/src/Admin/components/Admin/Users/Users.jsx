@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Table,
   Thead,
@@ -9,11 +10,21 @@ import {
   TableCaption,
   TableContainer,
   Button,
+  useToast,
 } from "@chakra-ui/react";
-
-import React from "react";
+import { BsTrash } from "react-icons/bs";
 
 const Users = () => {
+  const toast = useToast();
+  const handleDeleteUser = () => {
+    toast({
+      title: "User Remove.",
+      description: "User Removed from Database.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  };
   return (
     <TableContainer>
       <Table variant="striped" colorScheme="red">
@@ -24,7 +35,7 @@ const Users = () => {
             <Th>Username</Th>
             <Th>Email</Th>
             <Th>Phone</Th>
-            <Th>Edit</Th>
+            {/* <Th>Edit</Th> */}
             <Th>Delete</Th>
           </Tr>
         </Thead>
@@ -34,59 +45,13 @@ const Users = () => {
             <Td>Gaurav123</Td>
             <Td>gaurav@gmail.com</Td>
             <Td>82356476657</Td>
-            <Td>
+            {/* <Td>
               <Button colorScheme="green">Edit</Button>
-            </Td>
+            </Td> */}
             <Td>
-              <Button colorScheme="red">Delete</Button>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Gaurav</Td>
-            <Td>Gaurav123</Td>
-            <Td>gaurav@gmail.com</Td>
-            <Td>82356476657</Td>
-            <Td>
-              <Button colorScheme="green">Edit</Button>
-            </Td>
-            <Td>
-              <Button colorScheme="red">Delete</Button>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Gaurav</Td>
-            <Td>Gaurav123</Td>
-            <Td>gaurav@gmail.com</Td>
-            <Td>82356476657</Td>
-            <Td>
-              <Button colorScheme="green">Edit</Button>
-            </Td>
-            <Td>
-              <Button colorScheme="red">Delete</Button>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Gaurav</Td>
-            <Td>Gaurav123</Td>
-            <Td>gaurav@gmail.com</Td>
-            <Td>82356476657</Td>
-            <Td>
-              <Button colorScheme="green">Edit</Button>
-            </Td>
-            <Td>
-              <Button colorScheme="red">Delete</Button>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Gaurav</Td>
-            <Td>Gaurav123</Td>
-            <Td>gaurav@gmail.com</Td>
-            <Td>82356476657</Td>
-            <Td>
-              <Button colorScheme="green">Edit</Button>
-            </Td>
-            <Td>
-              <Button colorScheme="red">Delete</Button>
+              <Button colorScheme="red" onClick={handleDeleteUser}>
+                <BsTrash fontSize="25px" />
+              </Button>
             </Td>
           </Tr>
         </Tbody>
