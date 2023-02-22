@@ -1,11 +1,11 @@
 import './App.css';
-import logo from './Images/projectlogo.png'
+import Cart from './Components/Cart';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Project name :-  ShopOffer.com</h1>
-      <img src={logo} width='800' alt='Projectlogo'/>
+      <Cart />
     </div>
   );
 }
