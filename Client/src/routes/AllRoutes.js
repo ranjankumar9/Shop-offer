@@ -1,17 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import CreateCategory from "../Admin/components/Admin/CreateCategory";
-import CreateProduct from "../Admin/components/Admin/CreateProduct";
-import Orders from "../Admin/components/Admin/Orders";
+import CreateCategory from "../Admin/components/Admin/AddCategory/CreateCategory";
+import CreateProduct from "../Admin/components/Admin/AddProduct/CreateProduct";
+import Orders from "../Admin/components/Admin/Orders/Orders";
 import Products from "../Admin/components/Admin/Products";
-import Users from "../Admin/components/Admin/Users";
+import Users from "../Admin/components/Admin/Users/Users";
 import Layout from "../Admin/components/Layout/Layout";
 // import AdminLayout from "../Admin/components/Admin/AdminLayout";
 // import Admin from "../Admin/pages/AdminLayout";
 import Home from "../Admin/pages/Home";
 import NotFound from "../Admin/pages/NotFound";
 import Admin from "../Admin/pages/Admin";
-import AdminProfile from "./../Admin/components/Admin/AdminProfile";
+import AdminProfile from "../Admin/components/Admin/AdminProfile/AdminProfile";
 
 const AllRoutes = () => {
   return (

@@ -1,7 +1,7 @@
 import { Box, VStack } from "@chakra-ui/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./admin.css";
+import "../admin.css";
 const AdminMenu = () => {
   return (
     <VStack className="nav-links" h="100vh" w="30%" border="1px solid red">

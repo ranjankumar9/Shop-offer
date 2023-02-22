@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminLayout from "../components/Admin/AdminLayout";
-import AdminMenu from "../components/Admin/AdminMenu";
+import AdminMenu from "../components/Admin/AdminMenu/AdminMenu";
 
 const Admin = () => {
   return (

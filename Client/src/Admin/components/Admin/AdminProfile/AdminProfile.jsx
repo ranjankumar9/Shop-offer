@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Container } from "@chakra-ui/react";
-import "./admin.css";
+import "../admin.css";
 const AdminProfile = () => {
   return (
     <Container

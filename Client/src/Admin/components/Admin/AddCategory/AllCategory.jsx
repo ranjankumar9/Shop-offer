@@ -27,7 +27,7 @@ const AllCategory = () => {
         </Thead>
         <Tbody>
           <Tr>
-            <Td>inches</Td>
+            <Td>mens</Td>
             <Td>
               <Button colorScheme="green">Edit</Button>
             </Td>
@@ -36,7 +36,7 @@ const AllCategory = () => {
             </Td>
           </Tr>
           <Tr>
-            <Td>inches</Td>
+            <Td>womens</Td>
             <Td>
               <Button colorScheme="green">Edit</Button>
             </Td>
@@ -45,7 +45,7 @@ const AllCategory = () => {
             </Td>
           </Tr>
           <Tr>
-            <Td>inches</Td>
+            <Td>kids</Td>
             <Td>
               <Button colorScheme="green">Edit</Button>
             </Td>
