@@ -3,7 +3,6 @@ import './App.css';
 import Cart from './Components/Cart';
 import Admin from "./Admin/components/Admin/AdminLayout";
 import "./App.css";
-import logo from "./Images/projectlogo.png";
 import AllRoutes from "./routes/AllRoutes";
 
 function App() {
