@@ -11,8 +11,8 @@ const schema = mongoose.Schema(
   }
 );
 
-const UserModal = mongoose.model("client_user", schema);
+const ClientUserModel = mongoose.model("client_user", schema);
 
 module.exports = {
-  UserModal,
+  ClientUserModel,
 };

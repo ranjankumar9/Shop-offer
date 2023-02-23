@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const authenticate = (req, res, next) => {
+const UserAuthenticate = (req, res, next) => {
   const token = req.headers.authorization;
   if (token) {
-    jwt.verify(token, "masai", (err, decoded) => {
+    jwt.verify(token, "shopoffer_user", (err, decoded) => {
       if (decoded) {
         req.body.user = decoded.userId;
         next();
@@ -17,5 +17,5 @@ const authenticate = (req, res, next) => {
 };
 
 module.exports = {
-  authenticate,
+  UserAuthenticate,
 };
