@@ -1,17 +1,17 @@
-import "./App.css";
 import HomePage from "./components/HomePage";
-import NavbarMain from "./components/NavbarMain";
-import Sidebar from "./components/Sidebar";
-import BeautyHover from "./components/sideBarhover/beautyHover";
-import Homekichenhover from "./components/sideBarhover/homekichenhover";
-import MenHover from "./components/sideBarhover/MenHover";
-import ToyKidsHover from "./components/sideBarhover/ToykidsHover";
-import WomenHover from "./components/sideBarhover/WomenHover";
+import Cart from "./Components/Cart";
+import "./App.css";
+import AllRoutes from "./routes/AllRoutes";
 
 function App() {
   return (
     <div className="App">
       <HomePage />
+      <Cart />
+      {/* <Admin /> */}
+      <AllRoutes />
+      {/* <h1>Project name :- ShopOffer.com</h1>
+      <img src={logo} width="800" alt="Projectlogo" /> */}
     </div>
   );
 }
