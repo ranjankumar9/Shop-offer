@@ -1,194 +1,198 @@
-import React from 'react'
-import {
-    Box,
-    Container,
-    Stack,
-    Text,
-    Image,
-    Flex,
-    VStack,
-    Button,
-    Heading,
-    SimpleGrid,
-    StackDivider,
-    useColorModeValue,
-    List,
-    ListItem,
-  } from '@chakra-ui/react';
-//   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { MdLocalShipping } from 'react-icons/md';
-  import { useDispatch } from "react-redux";
-  import { addToCart } from "../Redux/CartReducer/reducer";
+import { Box, Button, Flex, Image, SimpleGrid, Text, useDisclosure, useToast } from "@chakra-ui/react"
+import  "../Style/Cart.css"
+import {AiOutlineHeart} from "react-icons/ai"
+import ReactImageMagnify from "react-image-magnify";
+import { StarIcon } from "@chakra-ui/icons";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import axios from "axios";
+const Cart=()=>{
+  const toast=useToast();
+  const {id}=useParams();
+  const navigate = useNavigate()
+  const [data,setData]=useState({});
+  useEffect(()=>{
 
-const Cart = ({dataId}) => {
-  // const dispatch = useDispatch();
-  // const {  } = dataId;
+    axios.get(
+      `https://snapdealbackend.onrender.com/products/${id}`
+    ).then((r)=>setData(r.data))
+  },[id])
 
-  const handleAddtocart = () => {
-  //  dispatch(addToCart())
-  }
-  return (
-    <Container maxW={'7xl'}>
-      <SimpleGrid
-        columns={{ base: 1, lg: 2 }}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 18, md: 24 }}>
-        <Flex>
-          <Image
-            rounded={'md'}
-            alt={'product image'}
-            src={
-              'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
+  console.log(data)
+      //  const { isOpen, onOpen, onClose } = useDisclosure();
+     
+        const addProduct = (data) => {
+          
+          axios.post("https://snapdealbackend.onrender.com/carts/addToCart",{product:{product:id,quntity:1}},{headers:{token:localStorage.getItem("token")}})
+            .then((r) => {
+               if(r.data.msg)
+               {
+                toast({
+                  title: 'Product',
+                  description: r.data.msg,
+                  status: 'success',
+                  duration: 5000,
+                  isClosable: true,
+                })
+                
+
+               }
+               else
+               {
+                toast({
+                    title: 'Product',
+                    description: r.data,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                  })
+               }
+            })
+            .catch((e) =>
+            {
+               toast({
+                 title: "Something went wrong",
+                 description: e,
+                 status: "error",
+                 duration: 9000,
+                 isClosable: true,
+               });
             }
-            fit={'cover'}
-            align={'center'}
-            w={'100%'}
-            h={{ base: '100%', sm: '400px', lg: '500px' }}
-          />
-        </Flex>
-        <Stack spacing={{ base: 6, md: 10 }}>
-          <Box as={'header'}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-              Automatic Watch
-            </Heading>
-            <Text
-              
-              fontWeight={300}
-              fontSize={'2xl'}>
-              $350.00 USD
-            </Text>
+            );
+        };
+  
+  const off= ((((data.price-data.offPrice)*100))/data.price);
+  console.log(off)
+  
+ 
+
+    return (
+      <>
+        <Flex
+          
+          w="90%"
+          gap={3}
+          justifyContent="center"
+          bg="white"
+          p="20px"
+          m="auto"
+        >
+          <Box w="40%" id="imageMagnifyer" zIndex={1}>
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: "Wristwatch by Ted Baker London",
+                  isFluidWidth: true,
+                  src: data.image,
+                },
+                largeImage: {
+                  src: data.image,
+                  width: 1000,
+                  height: 1300,
+                },
+              }}
+            />
           </Box>
+          <Box w="60%" borderLeft="1px solid grey">
+            <Box ml={7}>
+              <Flex>
+                <Text fontSize="22px" w="80%" mb={0}>
+                  {data?.name}
+                </Text>
 
-          <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={'column'}
-            divider={
-              <StackDivider
-               
+                {/* <Box><AiOutlineHeart/></Box> */}
+              </Flex>
+              <Flex gap={1.5} alignItems="center">
+                <StarIcon color="yellow" />
+                <StarIcon color="yellow" />
+                <StarIcon color="yellow" />
+                <StarIcon color="yellow" />
+                <AiOutlineHeart />
+                <Text>({data?.rating})</Text>
+              </Flex>
+              <hr
+                style={{
+                  border: "1px solid grey",
+                  marginTop: "5px",
+                  marginBottom: "8px",
+                }}
               />
-            }>
-            <VStack spacing={{ base: 4, sm: 6 }}>
-              <Text
-                color={useColorModeValue('gray.500', 'gray.400')}
-                fontSize={'2xl'}
-                fontWeight={'300'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore
-              </Text>
-              <Text fontSize={'lg'}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                maxime modi nam officiis porro, quae, quisquam quos
-                reprehenderit velit? Natus, totam.
-              </Text>
-            </VStack>
-            <Box>
-              <Text
-                fontSize={{ base: '16px', lg: '18px' }}
-               
-                fontWeight={'500'}
-                textTransform={'uppercase'}
-                mb={'4'}>
-                Features
-              </Text>
+              <Flex gap={2}>
+                <Text>MRP</Text>
+                <p style={{ textDecoration: "line-through" }}>
+                  RS:{data?.price}
+                </p>
+                <Text>(Inclusive of all taxes)</Text>
+              </Flex>
 
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{' '}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
+              <Flex gap={3}>
+                <Flex gap={3}>
+                  <Text style={{ fontSize: "22px", color: "red" }}>
+                    Rs.{data?.offPrice}
+                  </Text>
+                  <Text p="1px 4px" border="1px solid ">
+                    {off}% OFF
+                  </Text>
+                </Flex>
+              </Flex>
+              <Text ml="300px">(2) Offers | Applicable on cart</Text>
+              <SimpleGrid
+                style={{ border: "1px doted blue" }}
+                w="50%"
+                ml="300px"
+                border="1px dashed blue"
+                p={4}
+              >
+                <Flex gap={3}>
+                  <Image
+                    src="https://i1.sdlcdn.com/img/newOffersIcon.png"
+                    w={7}
+                    h={7}
+                    mt="4px"
+                  />
+                  <Text>
+                    15% Instant Discount Using AU Small Finance Bank Debit &
+                    Credit Cards T&C
+                  </Text>
+                </Flex>
+
+                <hr style={{ border: "0.1px solid grey", margin: "10px 0" }} />
+                <Flex gap={3}>
+                  <Image
+                    src="https://i1.sdlcdn.com/img/newOffersIcon.png"
+                    w={7}
+                    h={7}
+                    mt="4px"
+                  />
+                  <Text>
+                    15% Instant Discount Using AU Small Finance Bank Debit &
+                    Credit Cards T&C
+                  </Text>
+                </Flex>
               </SimpleGrid>
+
+              <Flex gap={4} mt="40px">
+                <Button
+                  size="lg"
+                  colorScheme="red"
+                  onClick={(ele) => {
+                    addProduct(ele);
+                  }}
+                >
+                  ADD TO CART
+                </Button>
+                <Link to="/Checkout.jsx">
+                <Button size="lg" colorScheme="yellow" color="white" onClick={() => navigate('/') }>
+                  BUY NOW
+                </Button>
+                </Link>
+              </Flex>
             </Box>
-            <Box>
-              <Text
-                fontSize={{ base: '16px', lg: '18px' }}
-               
-                fontWeight={'500'}
-                textTransform={'uppercase'}
-                mb={'4'}>
-                Product Details
-              </Text>
-
-              <List spacing={2}>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Between lugs:
-                  </Text>{' '}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Bracelet:
-                  </Text>{' '}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Case:
-                  </Text>{' '}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Case diameter:
-                  </Text>{' '}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Dial color:
-                  </Text>{' '}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Crystal:
-                  </Text>{' '}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Water resistance:
-                  </Text>{' '}
-                  5 bar (50 metres / 167 feet){' '}
-                </ListItem>
-              </List>
-            </Box>
-          </Stack>
-
-          <Button
-            rounded={'none'}
-            w={'full'}
-            mt={8}
-            size={'lg'}
-            py={'7'}
-            
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }} onClick={handleAddtocart}>
-            Add to cart
-          </Button>
-
-          <Stack direction="row" alignItems="center" justifyContent={'center'}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
-          </Stack>
-        </Stack>
-      </SimpleGrid>
-    </Container>
-  )
+          </Box>
+        </Flex>
+      </>
+    );
 }
 
-export default Cart
+export default Cart;
