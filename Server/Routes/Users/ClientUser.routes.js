@@ -7,7 +7,7 @@ const clientUserRouter = express.Router();
 
 clientUserRouter.post("/register", async (req, res) => {
   try {
-    const { name, email, pass } = req.body;
+    const { name, email, mobile, pass } = req.body;
     const user = await ClientUserModel.find({ email });
     if (user.length > 0) {
       res.send({ msg: "User already exist. Please login" });
@@ -16,7 +16,12 @@ clientUserRouter.post("/register", async (req, res) => {
         if (err) {
           res.send({ msg: "something went wrong", err });
         }
-        const newuser = new ClientUserModel({ name, email, pass: hash });
+        const newuser = new ClientUserModel({
+          name,
+          email,
+          mobile,
+          pass: hash,
+        });
         await newuser.save();
         res.send({ msg: "user is registered" });
       });
