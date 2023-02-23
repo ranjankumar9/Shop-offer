@@ -45,7 +45,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function Simple() {
+export default function NavbarMain() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -62,6 +62,7 @@ export default function Simple() {
           base: "none",
         }}
         fontSize="15px"
+        p={1}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "45px" }}
         pr={{ base: "5px", sm: "10px", md: "20px", lg: "50px", xl: "60px" }}
       >
@@ -77,6 +78,10 @@ export default function Simple() {
         </Flex>
       </Box>
       <Box
+        w={"100%"}
+        position={"fixed"}
+        zIndex={999}
+        // top={0}
         bg={"#e40046"}
         px={4}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "40px" }}
@@ -121,9 +126,15 @@ export default function Simple() {
                   base: "none",
                 }}
                 borderRadius="10px"
+                placeholder="Search products & Brands"
               />
 
-              <InputRightAddon children="Search" color={"white"} bg="black " />
+              <InputRightAddon
+                children="Search"
+                color={"white"}
+                bg="black "
+                cursor={"pointer"}
+              />
             </InputGroup>
             {/* <Box>Cart</Box> */}
             {/* </Flex> */}
