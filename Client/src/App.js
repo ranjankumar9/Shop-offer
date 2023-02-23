@@ -1,15 +1,16 @@
-import Admin from "./Admin/components/Admin/AdminLayout";
+import HomePage from "./Components/HomePage";
+import Cart from "./Components/Cart";
 import "./App.css";
-import logo from "./Images/projectlogo.png";
 import AllRoutes from "./routes/AllRoutes";
+import Checkout from "./Components/Checkout";
 
 function App() {
   return (
     <div className="App">
-      {/* <Admin /> */}
       <AllRoutes />
-      {/* <h1>Project name :- ShopOffer.com</h1>
-      <img src={logo} width="800" alt="Projectlogo" /> */}
+      {/* <Checkout /> */}
+      <HomePage />
+      {/* <Cart /> */}
     </div>
   );
 }

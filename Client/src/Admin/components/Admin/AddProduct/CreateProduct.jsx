@@ -19,6 +19,7 @@ import React, { useState } from "react";
 
 const CreateProduct = () => {
   const [userInput, setUserInput] = useState({
+    type: "",
     category: "",
     file: "",
     title: "",
@@ -27,14 +28,23 @@ const CreateProduct = () => {
     quantity: "",
   });
 
+  const types = ["mens", "womens", "home", "kids", "beauty"];
+  const categories = {
+    mens: ["bags", "clothing", "eyewear", "footwear", "sportswear"],
+    womens: ["watches", "cluthes", "makeup", "fragrance", "clothing"],
+    home: ["kitchen", "electronics", "adsfg", "ccs", "cccdd"],
+  };
+  // console.log(userInput);
+
   const toast = useToast();
-  const { category, file, title, description, price, quantity } = userInput;
+  const { type, category, file, title, description, price, quantity } =
+    userInput;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInput({ ...userInput, [name]: value });
   };
   const handleAddProduct = () => {
-    // console.log(userInput);
+    console.log(userInput);
 
     toast({
       title: "Product Added.",
@@ -45,6 +55,7 @@ const CreateProduct = () => {
     });
 
     setUserInput({
+      type: "",
       category: "",
       file: "",
       title: "",
@@ -54,21 +65,51 @@ const CreateProduct = () => {
     });
   };
   return (
-    <VStack w="70%" m="auto" className="create-product" gap="40px">
+    <VStack
+      w={{ base: "90%", sm: "80%", md: "70%", lg: "70%" }}
+      m="auto"
+      className="create-product"
+      gap="40px"
+    >
       <Heading as="h2" size="xl">
         Add Product
       </Heading>
       <FormControl className="form">
         {/* <FormLabel>Select Category:</FormLabel> */}
         <Select
+          placeholder="Select Type"
+          name="type"
+          value={type}
+          onChange={handleInputChange}
+        >
+          {/* <option value="a">a</option>
+          <option value="b">b</option>
+          <option value="c">c</option> */}
+          {types.map((typ) => {
+            return (
+              <option key={typ} value={typ}>
+                {typ}
+              </option>
+            );
+          })}
+        </Select>
+        <Select
           placeholder="Select Category"
           name="category"
           value={category}
           onChange={handleInputChange}
         >
-          <option value="mens">mens</option>
+          {type &&
+            categories[type].map((catgry) => {
+              return (
+                <option key={catgry} value={catgry}>
+                  {catgry}
+                </option>
+              );
+            })}
+          {/* <option value="mens">mens</option>
           <option value="womens">womens</option>
-          <option value="kids">kids</option>
+          <option value="kids">kids</option> */}
         </Select>
         {/* <FormLabel>Select Photo:</FormLabel> */}
         <Input
@@ -85,12 +126,12 @@ const CreateProduct = () => {
           value={title}
           onChange={handleInputChange}
         />
-        <Textarea
+        {/* <Textarea
           placeholder="Enter Product Description"
           name="description"
           value={description}
           onChange={handleInputChange}
-        />
+        /> */}
         <Input
           type="number"
           placeholder="Enter Your Price"
