@@ -3,9 +3,9 @@ const { ClientUserModel } = require("../../Models/ClientUser.modal");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const cliendUserRouter = express.Router();
+const clientUserRouter = express.Router();
 
-cliendUserRouter.post("/register", async (req, res) => {
+clientUserRouter.post("/register", async (req, res) => {
   try {
     const { name, email, pass } = req.body;
     const user = await ClientUserModel.find({ email });
@@ -26,7 +26,7 @@ cliendUserRouter.post("/register", async (req, res) => {
   }
 });
 
-cliendUserRouter.post("/login", async (req, res) => {
+clientUserRouter.post("/login", async (req, res) => {
   const { email, pass } = req.body;
   try {
     const loggedUser = await ClientUserModel.find({ email });
@@ -52,5 +52,5 @@ cliendUserRouter.post("/login", async (req, res) => {
 });
 
 module.exports = {
-  cliendUserRouter,
+  clientUserRouter,
 };
