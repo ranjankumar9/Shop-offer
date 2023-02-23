@@ -1,13 +1,12 @@
-
-import './App.css';
-import Cart from './Components/Cart';
-import Admin from "./Admin/components/Admin/AdminLayout";
+import HomePage from "./components/HomePage";
+import Cart from "./components/Cart";
 import "./App.css";
 import AllRoutes from "./routes/AllRoutes";
 
 function App() {
   return (
     <div className="App">
+      <HomePage />
       <Cart />
       {/* <Admin /> */}
       <AllRoutes />
