@@ -11,11 +11,10 @@ padding: 10px 30px;
 }
 
 .CategoryFilterDiv{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 20%;
     background-color: white;
-
-}
+ }
 
 .CAtegoryProductDiv{
     /* border: 1px solid green; */
@@ -199,3 +198,13 @@ display: none;
 
 }
  
+.SortByCategoryInput{
+    /* border: 1px solid red; */
+    padding: 10px 30px;
+    text-align: start;
+}
+.SortByCategoryInput p{
+    color: black;
+    
+    font-weight: bold;
+}

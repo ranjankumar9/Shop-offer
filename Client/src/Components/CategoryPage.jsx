@@ -2,7 +2,7 @@ import React from "react";
 import "../Style/CategoryPage.css";
 import { AiOutlineHeart } from "react-icons/ai";
 import {  BsSearch } from "react-icons/bs";
-
+import { Checkbox, CheckboxGroup ,Stack,Text} from '@chakra-ui/react'
 const CategoryPage = () => {
   return (
     <div className="CategoryPage">
@@ -35,7 +35,71 @@ const CategoryPage = () => {
         </div>
 
         <div className="CategoryMainDiv">
-          <div className="CategoryFilterDiv"></div>
+          <div className="CategoryFilterDiv">
+                <div className="SortByCategoryInput">
+                    <p> By Category</p>
+                <Stack spacing={2} direction='column'>
+  <Checkbox colorScheme='green' defaultChecked>
+    Men's
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Women's
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Kids
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Shoes
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Clothes
+  </Checkbox>
+</Stack>
+                </div>
+                <div className="SortByCategoryInput">
+                    <p> Random sort  </p>
+                <Stack spacing={2} direction='column'>
+  <Checkbox colorScheme='green' defaultChecked>
+    Price : Low - High
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+  Price : High - Low
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Rating : Low - High
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Name : A-Z
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    Name : Z-A
+  </Checkbox>
+</Stack>
+                </div>
+                <hr />
+                <div className="SortByCategoryInput">
+                    <p> By Ratting</p>
+                <Stack spacing={2} direction='column'>
+  <Checkbox colorScheme='green' defaultChecked>
+    5
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    4+
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    3+
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    2.5+
+  </Checkbox>
+  <Checkbox colorScheme='green' defaultChecked>
+    2+
+  </Checkbox>
+</Stack>
+                </div>
+                <hr />
+          </div>
+          {/* ............ */}
           <div className="CAtegoryProductDiv">
             <div className="ProductSideSort">
               <div className="CategoryProductData">
