@@ -4,6 +4,7 @@ const schema = mongoose.Schema(
   {
     name: { type: String, default: "user" },
     email: { type: String, required: true },
+    mobile: { type: String, required: true },
     pass: { type: String, required: true },
   },
   {
@@ -11,8 +12,8 @@ const schema = mongoose.Schema(
   }
 );
 
-const UserModal = mongoose.model("client_user", schema);
+const ClientUserModel = mongoose.model("client_user", schema);
 
 module.exports = {
-  UserModal,
+  ClientUserModel,
 };

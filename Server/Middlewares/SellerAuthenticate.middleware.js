@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 
-const authenticate = (req, res, next) => {
+const SellerAuthenticate = (req, res, next) => {
   const token = req.headers.authorization;
   if (token) {
-    jwt.verify(token, "masai", (err, decoded) => {
+    jwt.verify(token, "shopoffer_seller", (err, decoded) => {
       if (decoded) {
-        req.body.user = decoded.userId;
+        req.body.sellerId = decoded.sellerId;
         next();
       } else {
         res.send({ msg: "Please login first" });
@@ -17,5 +17,5 @@ const authenticate = (req, res, next) => {
 };
 
 module.exports = {
-  authenticate,
+  SellerAuthenticate,
 };
