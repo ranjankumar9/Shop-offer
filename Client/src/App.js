@@ -4,14 +4,14 @@ import Cart from './Components/Cart';
 import Admin from "./Admin/components/Admin/AdminLayout";
 import "./App.css";
 import AllRoutes from "./routes/AllRoutes";
-// import Checkout from './Components/Checkout';
+import Checkout from './Components/Checkout';
 
 
 function App() {
   return (
     <div className="App">
-      <Cart />
-      {/* <Checkout /> */}
+      {/* <Cart /> */}
+      <Checkout />
       {/* <Admin /> */}
       {/* <AllRoutes /> */}
       {/* <h1>Project name :- ShopOffer.com</h1>
