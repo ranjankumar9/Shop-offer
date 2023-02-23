@@ -79,9 +79,9 @@ export default function NavbarMain() {
       </Box>
       <Box
         w={"100%"}
-        position={"fixed"}
+        position={"sticky"}
         zIndex={999}
-        // top={0}
+        top={0}
         bg={"#e40046"}
         px={4}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "40px" }}

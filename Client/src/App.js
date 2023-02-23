@@ -1,5 +1,5 @@
 import HomePage from "./components/HomePage";
-import Cart from "./Components/Cart";
+import Cart from "./components/Cart";
 import "./App.css";
 import AllRoutes from "./routes/AllRoutes";
 
