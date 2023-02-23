@@ -1,11 +1,11 @@
 const express = require("express");
-const { ClientUserModel } = require("../Models/Client_user.model");
+const { ClientUserModel } = require("../../Models/ClientUser.modal");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const userRouter = express.Router();
+const cliendUserRouter = express.Router();
 
-userRouter.post("/register", async (req, res) => {
+cliendUserRouter.post("/register", async (req, res) => {
   try {
     const { name, email, pass } = req.body;
     const user = await ClientUserModel.find({ email });
@@ -26,7 +26,7 @@ userRouter.post("/register", async (req, res) => {
   }
 });
 
-userRouter.post("/login", async (req, res) => {
+cliendUserRouter.post("/login", async (req, res) => {
   const { email, pass } = req.body;
   try {
     const loggedUser = await ClientUserModel.find({ email });
@@ -34,7 +34,10 @@ userRouter.post("/login", async (req, res) => {
       bcrypt.compare(pass, loggedUser[0].pass, function (err, result) {
         if (err) throw err;
         if (result) {
-          const token = jwt.sign({ userId: loggedUser[0]._id }, "masai");
+          const token = jwt.sign(
+            { userId: loggedUser[0]._id },
+            "shopoffer_user"
+          );
           res.send({ msg: "logged in", token });
         } else {
           res.send({ msg: "wrong credentials" });
@@ -49,5 +52,5 @@ userRouter.post("/login", async (req, res) => {
 });
 
 module.exports = {
-  userRouter,
+  cliendUserRouter,
 };
