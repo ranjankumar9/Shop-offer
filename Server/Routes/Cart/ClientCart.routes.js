@@ -26,7 +26,7 @@ ClientCartRouter.patch("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     await ClientCartModel.findByIdAndUpdate({ _id: id }, req.body);
-    res.send({ msg: "Item updated in Cart" });
+    res.send({ msg: "Item Quantity Updated" });
   } catch (error) {
     res.send({ msg: "Something went wrong. Please try again later", error });
   }

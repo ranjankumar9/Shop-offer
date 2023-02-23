@@ -5,7 +5,7 @@ const UserAuthenticate = (req, res, next) => {
   if (token) {
     jwt.verify(token, "shopoffer_user", (err, decoded) => {
       if (decoded) {
-        req.body.user = decoded.userId;
+        req.body.userId = decoded.userId;
         next();
       } else {
         res.send({ msg: "Please login first" });
