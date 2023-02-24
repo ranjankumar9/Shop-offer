@@ -3,15 +3,22 @@
   padding: 0;
   margin: 0;
 }
+.sidebar-carousel-wrapper {
+  display: flex;
+}
+.carousel-wrapper {
+  width: 80%;
+}
+.carousel-1 {
+  display: flex;
+}
 .sidebar {
-  /* margin-top: 80px; */
-  padding-left: -10px;
-  margin-left: 60px;
-  margin-top: 40px;
-  width: 250px;
-  height: 800px;
+  position: relative;
+  width: 20%;
+  margin-top: 20px;
+  /* height: 800px; */
   background-color: #fff;
-  padding-left: 10px;
+  padding-left: 30px;
 }
 .sidebar .categories {
   margin-bottom: 10px;
@@ -118,9 +125,6 @@
 /*  */
 
 /*  */
-.sidebar {
-  position: relative;
-}
 .float-content {
   background-color: rgba(217, 223, 225, 0.237);
   position: absolute;
@@ -128,4 +132,61 @@
   top: 0;
   right: -900px;
   padding: 10px;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mySwiper-1 {
+  height: 450px;
+}
+.carousel-1 {
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.carousel-1 .slider-wrapper {
+  width: 70%;
+}
+@media only screen and (max-width: 1400px) {
+  .carousel-1 .slider-wrapper {
+    margin-left: 40px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .carousel-1 .slider-wrapper {
+    margin-left: 40px;
+    width: 100%;
+  }
+}
+.carousel-2 {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+.pincode-card {
+  width: 25%;
+  height: 100%;
+}
+.mySwiper-2 {
+  height: 300px;
 }
