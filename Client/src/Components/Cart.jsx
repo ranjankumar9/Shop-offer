@@ -1,3 +1,4 @@
+
 import { Box, Button, Flex, Image, SimpleGrid, Text, useDisclosure, useToast } from "@chakra-ui/react"
 import  "../Style/Cart.css"
 import {AiOutlineHeart} from "react-icons/ai"
@@ -196,3 +197,9 @@ const Cart=()=>{
 }
 
 export default Cart;
+
+
+
+
+
+
