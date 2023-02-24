@@ -182,35 +182,10 @@ const CreateProduct = () => {
           value={sellerId}
           onChange={handleInputChange}
         />
-        {/* <Textarea
-          placeholder="Enter Product Description"
-          name="description"
-          value={description}
-          onChange={handleInputChange}
-        /> */}
-        {/* <Input
-          type="number"
-          placeholder="Enter Your Price"
-          name="price"
-          value={price}
-          onChange={handleInputChange}
-        /> */}
-        {/* <NumberInput max={50} min={10}>
-          <NumberInputField
-            placeholder="Enter Your Quantity"
-            name="quantity"
-            value={quantity}
-            onChange={handleInputChange}
-          />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput> */}
+
         <Button borderRadius="5px" size="md" onClick={handleAddProduct}>
           Add Product
         </Button>
-        {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
       </FormControl>
     </VStack>
   );
