@@ -1,4 +1,3 @@
-import { Box, VStack } from "@chakra-ui/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../admin.css";
