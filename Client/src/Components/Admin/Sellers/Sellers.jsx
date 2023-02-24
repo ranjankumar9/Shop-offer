@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-  Button,
-  useToast,
-} from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { BsTrash } from "react-icons/bs";
 
 const Users = () => {

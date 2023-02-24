@@ -1,14 +1,11 @@
 import React, { useRef, useState } from "react";
-
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Button,
   Modal,
@@ -69,7 +66,6 @@ const AllCategory = () => {
   return (
     <TableContainer w="70%">
       <Table variant="simple">
-        {/* <TableCaption>Imperial to metric conversion </TableCaption> */}
         <Thead>
           <Tr>
             <Th>Category Name</Th>
@@ -124,13 +120,6 @@ const AllCategory = () => {
             </Td>
           </Tr>
         </Tbody>
-        {/* <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th>multiply by</Th>
-          </Tr>
-        </Tfoot> */}
       </Table>
     </TableContainer>
   );

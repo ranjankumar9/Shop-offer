@@ -1,24 +1,23 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import CreateCategory from "../Admin/components/Admin/AddCategory/CreateCategory";
-import CreateProduct from "../Admin/components/Admin/AddProduct/CreateProduct";
-import Orders from "../Admin/components/Admin/Orders/Orders";
-import Products from "../Admin/components/Admin/Products";
-import Users from "../Admin/components/Admin/Sellers/Sellers";
-import Layout from "../Admin/components/Layout/Layout";
-// import AdminLayout from "../Admin/components/Admin/AdminLayout";
-// import Admin from "../Admin/pages/AdminLayout";
-import Home from "../Admin/pages/Home";
-import NotFound from "../Admin/pages/NotFound";
-import Admin from "../Admin/pages/Admin";
-import AdminProfile from "../Admin/components/Admin/AdminProfile/AdminProfile";
+// import CreateCategory from "../Admin/components/Admin/AddCategory/CreateCategory";
+import NotFound from './../pages/NotFound';
+import Layout from './../Components/Layout/Layout';
+import HomePage from './../pages/HomePage';
+import Admin from './../pages/Admin';
+import AdminProfile from './../Components/Admin/AdminProfile/AdminProfile';
+import CreateProduct from './../Components/Admin/AddProduct/CreateProduct';
+import Products from './../Components/Admin/Products';
+import Users from './../Components/Admin/Sellers/Sellers';
+import Orders from './../Components/Admin/Orders/Orders';
+
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Layout />}>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route exact path="/" element={<Admin />}>
           <Route path="/admin" element={<AdminProfile />} />
           {/* <Route path="/admin/create-category" element={<CreateCategory />} /> */}
