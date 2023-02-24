@@ -1,7 +1,8 @@
 import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import AdminMenu from "../components/Admin/AdminMenu/AdminMenu";
+import AdminMenu from './../Components/Admin/AdminMenu/AdminMenu';
+
 
 const Admin = () => {
   return (
