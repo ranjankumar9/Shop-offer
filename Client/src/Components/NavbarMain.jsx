@@ -1,10 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
   Box,
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Text,
   Button,
@@ -21,12 +20,16 @@ import {
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
+  VStack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineSearch } from "react-icons/ai";
 import snaplogo from "../Images/snaplogo.png";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
+import UserRegisterModal from "./sideBarhover/UserRegisterModal";
+import UserLoginModal from "./sideBarhover/UserLoginModal";
+import { Link } from "react-router-dom";
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
 
@@ -46,7 +49,7 @@ const NavLink = ({ children }) => (
 );
 
 export default function NavbarMain() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showHam, setShowHam] = useState(false);
 
   return (
     <>
@@ -90,10 +93,10 @@ export default function NavbarMain() {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            icon={showHam ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
+            onClick={() => setShowHam(!showHam)}
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
@@ -248,15 +251,26 @@ export default function NavbarMain() {
               </MenuButton>
               <MenuList>
                 <MenuItem>mens</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>
+                  <Link to="/seller/register">Become A Seller</Link>
+                </MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>
+                  {/* <Text fontSize="12px" >
+                    If You are a New User
+                  </Text> */}
+                  <UserRegisterModal />
+                </MenuItem>
+
+                <MenuItem>
+                  <UserLoginModal />
+                </MenuItem>
               </MenuList>
             </Menu>
           </Flex>
         </Flex>
 
-        {isOpen ? (
+        {showHam ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {dropLinks.map((link) => (
