@@ -11,7 +11,7 @@ const Admin = () => {
       justify={"space-between"}
       flexDirection={{ base: "column", sm: "column", md: "column", lg: "row" }}
       bg="gray.50"
-      border="1px solid blue"
+      // border="1px solid blue"
     >
       <VStack
         className="nav-links"
