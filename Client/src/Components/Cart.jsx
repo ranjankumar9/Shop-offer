@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import { Box, Button, Flex, Image, SimpleGrid, Text, useDisclosure, useToast } from "@chakra-ui/react"
 import  "../Style/Cart.css"
@@ -21,29 +20,6 @@ const Cart=()=>{
     ).then((r)=>setData(r.data))
   },[id])
 
-=======
-import { Box, Button, Flex, Image, SimpleGrid, Text, useDisclosure, useToast } from "@chakra-ui/react"
-import  "../Style/Cart.css"
-import {AiOutlineHeart} from "react-icons/ai"
-import ReactImageMagnify from "react-image-magnify";
-import { StarIcon } from "@chakra-ui/icons";
-import { useNavigate, useParams } from "react-router-dom";
-import { Link } from 'react-router-dom'
-import { useEffect, useState } from "react";
-import axios from "axios";
-const Cart=()=>{
-  const toast=useToast();
-  const {id}=useParams();
-  const navigate = useNavigate()
-  const [data,setData]=useState({});
-  useEffect(()=>{
-
-    axios.get(
-      `https://snapdealbackend.onrender.com/products/${id}`
-    ).then((r)=>setData(r.data))
-  },[id])
-
->>>>>>> ac3d867501b0f2f84c6c1b79908b26a248b7aaa4
   console.log(data)
       //  const { isOpen, onOpen, onClose } = useDisclosure();
      
@@ -220,13 +196,10 @@ const Cart=()=>{
     );
 }
 
-<<<<<<< HEAD
 export default Cart;
 
 
 
 
 
-=======
-export default Cart;
->>>>>>> ac3d867501b0f2f84c6c1b79908b26a248b7aaa4
+
