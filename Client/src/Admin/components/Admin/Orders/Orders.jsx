@@ -1,101 +1,74 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-  Button,
-  Select,
-} from "@chakra-ui/react";
-
-import React from "react";
+import React, { useState } from "react";
 
 const Orders = () => {
+  const [orderStatus, setOrderStatus] = useState("pending");
+  // console.log(orderStatus);
   return (
-    <TableContainer>
-      <Table variant="simple">
-        {/* <TableCaption>Imperial to metric conversion </TableCaption> */}
-        <Thead>
-          <Tr>
-            <Th>#</Th>
-            <Th>Status</Th>
-            <Th>Buyer</Th>
-            <Th>Date</Th>
-            <Th>Payment</Th>
-            <Th>Quantity</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <Td>1</Td>
-            <Td>
-              <Select variant="unstyled">
-                <option value="">Delivered</option>
-                <option value="">Pending</option>
-                <option value="">Canceled</option>
-              </Select>
-            </Td>
-            <Td>Gaurav</Td>
-            <Td>a few seconds ago</Td>
-            <Td>Success</Td>
-            <Td>5</Td>
-          </Tr>
-          <Tr>
-            <Td>1</Td>
-            <Td>
-              <Select variant="unstyled">
-                <option value="">Delivered</option>
-                <option value="">Pending</option>
-                <option value="">Canceled</option>
-              </Select>
-            </Td>
-            <Td>Gaurav</Td>
-            <Td>a few seconds ago</Td>
-            <Td>Success</Td>
-            <Td>5</Td>
-          </Tr>
-          <Tr>
-            <Td>1</Td>
-            <Td>
-              <Select variant="unstyled">
-                <option value="">Delivered</option>
-                <option value="">Pending</option>
-                <option value="">Canceled</option>
-              </Select>
-            </Td>
-            <Td>Gaurav</Td>
-            <Td>a few seconds ago</Td>
-            <Td>Success</Td>
-            <Td>5</Td>
-          </Tr>
-          <Tr>
-            <Td>1</Td>
-            <Td>
-              <Select variant="unstyled">
-                <option value="">Delivered</option>
-                <option value="">Pending</option>
-                <option value="">Canceled</option>
-              </Select>
-            </Td>
-            <Td>Gaurav</Td>
-            <Td>a few seconds ago</Td>
-            <Td>Success</Td>
-            <Td>5</Td>
-          </Tr>
-        </Tbody>
-        {/* <Tfoot>
-              <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th>multiply by</Th>
-              </Tr>
-            </Tfoot> */}
-      </Table>
-    </TableContainer>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Status</th>
+          <th>Buyer</th>
+          <th>Date</th>
+          <th>Payment</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="#">1</td>
+          <td data-label="Status">
+            <select
+              value={orderStatus}
+              onChange={(e) => setOrderStatus(e.target.value)}
+            >
+              <option value="delivered">Delivered</option>
+              <option value="pending">Pending</option>
+              <option value="canceled">Canceled</option>
+            </select>
+          </td>
+          <td data-label="Buyer">Gaurav</td>
+          <td data-label="Date">a few seconds ago</td>
+          <td data-label="Payment">Success</td>
+          <td data-label="Quantity">5</td>
+        </tr>
+        <tr>
+          <td data-label="#">1</td>
+          <td data-label="Status">
+            <select
+              value={orderStatus}
+              onChange={(e) => setOrderStatus(e.target.value)}
+            >
+              <option value="delivered">Delivered</option>
+              <option value="pending">Pending</option>
+              <option value="canceled">Canceled</option>
+            </select>
+          </td>
+          <td data-label="Buyer">Gaurav</td>
+          <td data-label="Date">a few seconds ago</td>
+          <td data-label="Payment">Success</td>
+          <td data-label="Quantity">5</td>
+        </tr>
+        <tr>
+          <td data-label="#">1</td>
+          <td data-label="Status">
+            <select
+              value={orderStatus}
+              onChange={(e) => setOrderStatus(e.target.value)}
+            >
+              <option value="delivered">Delivered</option>
+              <option value="pending">Pending</option>
+              <option value="canceled">Canceled</option>
+            </select>
+          </td>
+          <td data-label="Buyer">Gaurav</td>
+          <td data-label="Date">a few seconds ago</td>
+          <td data-label="Payment">Success</td>
+          <td data-label="Quantity">5</td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

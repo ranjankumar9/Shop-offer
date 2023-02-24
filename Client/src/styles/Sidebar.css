@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.sidebar {
+  /* margin-top: 80px; */
+  padding-left: -10px;
+  margin-left: 60px;
+  margin-top: 40px;
+  width: 250px;
+  height: 800px;
+  background-color: #fff;
+  padding-left: 10px;
+}
+.sidebar .categories {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-size: larger;
+  display: flex;
+  /* margin-left: 10px; */
+}
+.sidebar .flex:hover {
+  box-shadow: rgba(41, 48, 48, 0.112) 0px 2px 1px 0px;
+}
+.sidebar .firstBlock > div {
+  color: grey;
+  display: flex;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.sidebar .firstBlock .flex {
+  /* margin-left: 10px; */
+  gap: 10px;
+}
+.sidebar .firstBlock .flex > img {
+  border-radius: 20px;
+  width: 15%;
+}
+
+.sidebar .secondBlock > div {
+  color: grey;
+  display: flex;
+  margin-bottom: 10px;
+  cursor: pointer;
+  /* justify-content: center; */
+}
+.sidebar .secondBlock > div:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.sidebar .thirdBlock > div {
+  color: grey;
+  display: flex;
+  margin-bottom: 10px;
+  cursor: pointer;
+  /* justify-content: center; */
+}
+.sidebar .thirdBlock > div:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.men-navbar {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.men-navbar .column .section :hover {
+  cursor: pointer;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.men-navbar h2 {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  justify-items: baseline;
+}
+.men-navbar .section .item {
+  margin-top: 5px;
+}
+.men-navbar .column {
+  justify-content: baseline;
+  gap: 50px;
+}
+.men-navbar .column > img {
+  width: 200px;
+  height: 100%;
+}
+.hover-content.nav-women-content {
+  bottom: -410px;
+  height: 450px;
+}
+.hover-content {
+  position: absolute;
+  bottom: -230px;
+  width: 100%;
+  background-color: #fff;
+  height: 270px;
+  /* border: 2px solid red; */
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.hover-content.nav-women-content {
+  bottom: -410px;
+  height: 450px;
+}
+
+.hover-content.nav-girls-content {
+  bottom: -320px;
+  height: 370px;
+}
+
+.hover-content.nav-boys-content {
+  bottom: -310px;
+  height: 350px;
+}
+/*  */
+
+/*  */
+
+/*  */
+.sidebar {
+  position: relative;
+}
+.float-content {
+  background-color: rgba(217, 223, 225, 0.237);
+  position: absolute;
+  width: 900px;
+  top: 0;
+  right: -900px;
+  padding: 10px;
+}
