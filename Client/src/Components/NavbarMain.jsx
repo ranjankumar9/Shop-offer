@@ -29,7 +29,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
 import UserRegisterModal from "./sideBarhover/UserRegisterModal";
 import UserLoginModal from "./sideBarhover/UserLoginModal";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
 
@@ -50,6 +50,10 @@ const NavLink = ({ children }) => (
 
 export default function NavbarMain() {
   const [showHam, setShowHam] = useState(false);
+ 
+  const handleCart=()=> {
+    console.log('aji')
+   }
 
   return (
     <>
@@ -166,6 +170,7 @@ export default function NavbarMain() {
                   spacing={4}
                   display={{ base: "none", lg: "flex" }}
                 >
+                  
                   <Flex gap={"2"}>
                     <Box
                       color={"white"}
@@ -177,8 +182,10 @@ export default function NavbarMain() {
                       }}
                       display={"flex "}
                       gap="10px"
+                      
                     >
-                      cart
+                      Cart
+                      
                     </Box>
                     <Box
                       color={"white"}
@@ -193,6 +200,7 @@ export default function NavbarMain() {
                       <BsFillCartFill />
                     </Box>
                   </Flex>
+                  
                 </HStack>
                 {/* <Avatar size={"sm"} src={"./Images/projectlogo.png"} /> */}
               </MenuButton>
