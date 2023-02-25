@@ -4,7 +4,6 @@ const sellerProductsRouter = require("express").Router();
 sellerProductsRouter.get("/get", async (req, res) => {
   try {
     const { sellerId } = req.body;
-    // console.log(sellerId);
     const sellerData = await ProductModel.find({ sellerId });
 
     res.send(sellerData);

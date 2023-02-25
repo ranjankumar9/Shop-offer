@@ -4,9 +4,27 @@ const allProductsRouter = require("express").Router();
 
 allProductsRouter.get("/", async (req, res) => {
   try {
-    const { type } = req.query;
-    if (type) {
+    const { category, q, sort, order, type } = req.query;
+    if (type && category && sort && order) {
+      const products = await ProductModel.find({ type, category }).sort({
+        [sort]: order == "asc" ? 1 : -1,
+      });
+      res.send(products);
+    } else if (type && !category && sort && order) {
+      const products = await ProductModel.find({ type }).sort({
+        [sort]: order == "asc" ? 1 : -1,
+      });
+      res.send(products);
+    } else if (type && category) {
+      const products = await ProductModel.find({ type, category });
+      res.send(products);
+    } else if (type) {
       const products = await ProductModel.find({ type });
+      res.send(products);
+    } else if (q) {
+      const products = await ProductModel.find({
+        product_title: { $regex: q, $options: "i" },
+      });
       res.send(products);
     } else {
       const products = await ProductModel.find();
