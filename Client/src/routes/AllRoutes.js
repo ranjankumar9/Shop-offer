@@ -12,7 +12,11 @@ import Orders from "./../Components/Admin/Orders/Orders";
 import SellerRegister from "../pages/SellerRegister";
 import SellerLogin from "../pages/SellerLogin";
 import Products from "./../Components/Admin/Products/Products";
+
 import CartPage from "../pages/CartPage";
+
+import Cart from "../pages/Cart";
+import CategoryPage from "../Components/CategoryPage";
 
 const AllRoutes = () => {
   return (
@@ -23,7 +27,11 @@ const AllRoutes = () => {
       <Route path="/cartpage" element={<CartPage />} />
       <Route path="/" element={<Layout />}>
         <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/singleproduct/:_id" element={<Cart />}/>
+        <Route exact path="/products" element={<CategoryPage />}/>
+
         <Route exact path="/" element={<Admin />}>
+
           <Route path="/admin" element={<AdminProfile />} />
           {/* <Route path="/admin/create-category" element={<CreateCategory />} /> */}
           <Route path="/admin/create-product" element={<CreateProduct />} />

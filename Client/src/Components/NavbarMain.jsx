@@ -27,9 +27,12 @@ import { AiOutlineSearch } from "react-icons/ai";
 import snaplogo from "../Images/snaplogo.png";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
+
 import UserRegisterModal from "./sideBarhover/UserRegisterModal";
 import UserLoginModal from "./sideBarhover/UserLoginModal";
 import { Link } from 'react-router-dom'
+
+
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
 
@@ -264,9 +267,6 @@ export default function NavbarMain() {
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>
-                  {/* <Text fontSize="12px" >
-                    If You are a New User
-                  </Text> */}
                   <UserRegisterModal />
                 </MenuItem>
 
