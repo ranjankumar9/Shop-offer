@@ -1,4 +1,3 @@
-
 import "./App.css";
 import CategoryPage from "./Components/CategoryPage";
 import AllRoutes from "./routes/AllRoutes";
