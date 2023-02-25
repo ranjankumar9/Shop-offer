@@ -35,8 +35,10 @@ sellerProductsRouter.patch("/update/:id", async (req, res) => {
 sellerProductsRouter.delete("/delete/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await ProductModel.findByIdAndDelete({ _id: id }, req.body);
-    res.send({ msg: "Product Deleted Successfully." });
+
+    await ProductModel.findByIdAndDelete({ _id: id });
+    res.send({ msg: "Items deleted" });
+
   } catch (error) {
     res.send({ msg: "Something went wrong. Please try again later", error });
   }

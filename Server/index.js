@@ -22,14 +22,13 @@ app.use(json());
 app.use("/user", clientUserRouter);
 app.use("/user", UserAuthenticate, ClientCartRouter);
 app.use("/seller", sellerUserRouter);
-// app.use("/seller", SellerAuthenticate, sellerProductsRouter);
-app.use("/seller", sellerProductsRouter);
+app.use("/seller", SellerAuthenticate, sellerProductsRouter);
 app.use("/products", allProductsRouter);
 
 app.listen(process.env.port, async () => {
   try {
     connection;
-    console.log("connected to DB at 3000");
+    console.log("connected to DB at 4500");
   } catch (error) {
     console.log({ msg: "could not connect", error });
   }
