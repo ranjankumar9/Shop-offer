@@ -12,7 +12,7 @@ import Orders from "./../Components/Admin/Orders/Orders";
 import SellerRegister from "../pages/SellerRegister";
 import SellerLogin from "../pages/SellerLogin";
 import SellerProducts from "./../Components/Admin/Products/Products";
-
+import Form from "../pages/Payment Page/Form"
 import CartPage from "../pages/CartPage";
 
 import SingleProduct from "../pages/SingleProduct";
@@ -29,6 +29,7 @@ const AllRoutes = () => {
         <Route exact path="/singleproduct/:_id" element={<SingleProduct />}/>
         <Route exact path="/products" element={<Products />}/>
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/payment" element={<Form />} />
         <Route exact path="/" element={<Admin />}>
           <Route path="/admin" element={<AdminProfile />} />
           {/* <Route path="/admin/create-category" element={<CreateCategory />} /> */}
@@ -36,8 +37,9 @@ const AllRoutes = () => {
           <Route path="/admin/products" element={<SellerProducts />} />
           <Route path="/admin/sellers" element={<Users />} />
           <Route path="/admin/orders" element={<Orders />} />
+          
         </Route>
-
+        
       </Route>
       
     </Routes>

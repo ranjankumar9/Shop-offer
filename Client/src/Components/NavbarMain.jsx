@@ -26,9 +26,10 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
-
+import  CartPage  from '../pages/CartPage'
 import UserRegisterModal from "./Register/UserRegisterModal";
 import UserLoginModal from "./Login/UserLoginModal";
+
 import { Link } from 'react-router-dom'
 
 
@@ -186,7 +187,7 @@ export default function NavbarMain() {
                       gap="10px"
                       
                     >
-                     <Link to="/cartpage">Cart</Link>
+                     <Link to="/cart">Cart</Link>
                       
                     </Box>
                     <Box
