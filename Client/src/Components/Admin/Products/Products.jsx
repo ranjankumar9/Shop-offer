@@ -49,15 +49,15 @@ const Products = () => {
       });
     }
   };
-  const handleUpdateProduct = (id) => {
-    // toast({
-    //   title: "Product Updated.",
-    //   description: "Product Updated from Database.",
-    //   status: "success",
-    //   duration: 5000,
-    //   isClosable: true,
-    // });
-  };
+  // const handleUpdateProduct = (id) => {
+  //   // toast({
+  //   //   title: "Product Updated.",
+  //   //   description: "Product Updated from Database.",
+  //   //   status: "success",
+  //   //   duration: 5000,
+  //   //   isClosable: true,
+  //   // });
+  // };
   return (
     <table className="table products-table">
       <thead>
@@ -87,10 +87,7 @@ const Products = () => {
               <td data-label="Offer Price">Rs {offer_price}</td>
               <td data-label="Discount">{product_discount}%</td>
               <td data-label="Update">
-                <Button
-                  variant={"unstyled"}
-                  onClick={() => handleUpdateProduct(_id)}
-                >
+                <Button variant={"unstyled"}>
                   <UpdateProduct product={product} />
                 </Button>
               </td>
