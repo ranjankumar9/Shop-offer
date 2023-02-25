@@ -256,9 +256,6 @@ export default function NavbarMain() {
                 </MenuItem>
                 <MenuDivider />
                 <MenuItem>
-                  {/* <Text fontSize="12px" >
-                    If You are a New User
-                  </Text> */}
                   <UserRegisterModal />
                 </MenuItem>
 

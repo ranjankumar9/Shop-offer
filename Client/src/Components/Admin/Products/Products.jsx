@@ -9,10 +9,15 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const toast = useToast();
 
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: localStorage.getItem("token"),
+  };
+
   const getProducts = async () => {
     try {
       const res = await axios.get("http://localhost:4500/seller/get");
-      console.log(res.data);
+      console.log(res);
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -32,8 +37,9 @@ const Products = () => {
         duration: 5000,
         isClosable: true,
       });
+      getProducts();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast({
         title: "Failed to Delete Product.",
         description: error.message,
@@ -66,40 +72,39 @@ const Products = () => {
         </tr>
       </thead>
       <tbody>
-        {products &&
-          products.map((product) => {
-            const { _id, product_title, mrp, offer_price, product_discount } =
-              product;
-            return (
-              <tr key={_id}>
-                <td data-label="ProductID">{_id}</td>
-                <td data-label="Name">
-                  {product_title.length > 50
-                    ? `${product_title.slice(0, 30)}...`
-                    : product_title}
-                </td>
-                <td data-label="MRP">Rs {mrp}</td>
-                <td data-label="Offer Price">Rs {offer_price}</td>
-                <td data-label="Discount">{product_discount}%</td>
-                <td data-label="Update">
-                  <Button
-                    variant={"unstyled"}
-                    onClick={() => handleUpdateProduct(_id)}
-                  >
-                    <UpdateProduct product={product} />
-                  </Button>
-                </td>
-                <td data-label="Remove">
-                  <Button
-                    variant={"unstyled"}
-                    onClick={() => handleDeleteProduct(_id)}
-                  >
-                    <BsTrashFill fontSize="25px" color="red" />
-                  </Button>
-                </td>
-              </tr>
-            );
-          })}
+        {products?.map((product) => {
+          const { _id, product_title, mrp, offer_price, product_discount } =
+            product;
+          return (
+            <tr key={_id}>
+              <td data-label="ProductID">{_id}</td>
+              <td data-label="Name">
+                {product_title.length > 50
+                  ? `${product_title.slice(0, 30)}...`
+                  : product_title}
+              </td>
+              <td data-label="MRP">Rs {mrp}</td>
+              <td data-label="Offer Price">Rs {offer_price}</td>
+              <td data-label="Discount">{product_discount}%</td>
+              <td data-label="Update">
+                <Button
+                  variant={"unstyled"}
+                  onClick={() => handleUpdateProduct(_id)}
+                >
+                  <UpdateProduct product={product} />
+                </Button>
+              </td>
+              <td data-label="Remove">
+                <Button
+                  variant={"unstyled"}
+                  onClick={() => handleDeleteProduct(_id)}
+                >
+                  <BsTrashFill fontSize="25px" color="red" />
+                </Button>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
