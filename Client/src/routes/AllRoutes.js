@@ -12,14 +12,19 @@ import Orders from "./../Components/Admin/Orders/Orders";
 import SellerRegister from "../pages/SellerRegister";
 import SellerLogin from "../pages/SellerLogin";
 import Products from "./../Components/Admin/Products/Products";
+
+import CartPage from "../pages/CartPage";
+
 import Cart from "../pages/Cart";
 import CategoryPage from "../Components/CategoryPage";
+
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="/seller/register" element={<SellerRegister />} />
       <Route path="/seller/login" element={<SellerLogin />} />
+      <Route path="/cartpage" element={<CartPage />} />
       <Route path="/" element={<Layout />}>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/singleproduct/:_id" element={<Cart />}/>
@@ -34,7 +39,9 @@ const AllRoutes = () => {
           <Route path="/admin/sellers" element={<Users />} />
           <Route path="/admin/orders" element={<Orders />} />
         </Route>
+
       </Route>
+      
     </Routes>
   );
 };

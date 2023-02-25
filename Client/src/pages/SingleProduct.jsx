@@ -1,6 +1,6 @@
 
 import { Box, Button, Flex, Image, SimpleGrid, Text, useDisclosure, useToast } from "@chakra-ui/react"
-import  "../Style/Cart.css"
+import  "../Style/CategoryPage.css"
 import {AiOutlineHeart} from "react-icons/ai"
 import ReactImageMagnify from "react-image-magnify";
 import { StarIcon } from "@chakra-ui/icons";
