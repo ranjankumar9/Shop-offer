@@ -27,8 +27,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import snaplogo from "../Images/snaplogo.png";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
-import UserRegisterModal from "./sideBarhover/UserRegisterModal";
-import UserLoginModal from "./sideBarhover/UserLoginModal";
+import UserRegisterModal from "./Register/UserRegisterModal";
+import UserLoginModal from "./Login/UserLoginModal";
 import { Link } from "react-router-dom";
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
