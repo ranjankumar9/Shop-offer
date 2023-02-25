@@ -15,8 +15,8 @@ import Products from "./../Components/Admin/Products/Products";
 
 import CartPage from "../pages/CartPage";
 
-import Cart from "../pages/Cart";
 import CategoryPage from "../Components/CategoryPage";
+import Cart from "./../pages/SingleProduct";
 
 const AllRoutes = () => {
   return (
@@ -24,24 +24,21 @@ const AllRoutes = () => {
       <Route path="*" element={<NotFound />} />
       <Route path="/seller/register" element={<SellerRegister />} />
       <Route path="/seller/login" element={<SellerLogin />} />
-      <Route path="/cartpage" element={<CartPage />} />
+
       <Route path="/" element={<Layout />}>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/singleproduct/:_id" element={<Cart />}/>
-        <Route exact path="/products" element={<CategoryPage />}/>
-
+        <Route path="/singleproduct/:_id" element={<Cart />} />
+        <Route path="/products" element={<CategoryPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route exact path="/" element={<Admin />}>
-
           <Route path="/admin" element={<AdminProfile />} />
           {/* <Route path="/admin/create-category" element={<CreateCategory />} /> */}
           <Route path="/admin/create-product" element={<CreateProduct />} />
           <Route path="/admin/products" element={<Products />} />
-          <Route path="/admin/sellers" element={<Users />} />
+          {/* <Route path="/admin/sellers" element={<Users />} /> */}
           <Route path="/admin/orders" element={<Orders />} />
         </Route>
-
       </Route>
-      
     </Routes>
   );
 };
