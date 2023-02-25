@@ -1,10 +1,4 @@
-import {
-  Link,
-  LinkOverlay,
-  Select,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
+import { Link, Select, useDisclosure, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import {
   Modal,
@@ -20,32 +14,10 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { TbEdit } from "react-icons/tb";
+import { toastProps, categories, types } from "../../../constant/constants";
 
-const UpdateProduct = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
-  const [userInput, setUserInput] = useState({
-    type: "",
-    category: "",
-    product_image: "",
-    product_title: "",
-    mrp: "",
-    offer_price: "",
-    product_discount: "",
-    product_rating_count: "",
-  });
-
-  const types = ["mens", "womens", "home", "kids", "beauty"];
-  const categories = {
-    mens: ["bags", "clothing", "eyewear", "footwear", "sportswear"],
-    womens: ["watches", "cluthes", "makeup", "fragrance", "clothing"],
-    home: ["kitchen", "electronics", "adsfg", "ccs", "cccdd"],
-  };
-  // console.log(userInput);
-
-  const toast = useToast();
-  const {
+const UpdateProduct = ({
+  product: {
     type,
     category,
     product_image,
@@ -54,49 +26,52 @@ const UpdateProduct = () => {
     offer_price,
     product_discount,
     product_rating_count,
-  } = userInput;
+  },
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [productImage, setproductImage] = useState("");
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+  const [userInput, setUserInput] = useState({
+    type: type,
+    category: category,
+    product_image: "",
+    product_title: product_title,
+    mrp: mrp,
+    offer_price: offer_price,
+    product_discount: product_discount,
+    product_rating_count: product_rating_count,
+  });
+
+  const toast = useToast();
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserInput({ ...userInput, [name]: value });
+    const { name, value, files } = e.target;
+
+    if (name === "product_image") setproductImage(e.target.value);
+    else setUserInput({ ...userInput, [name]: value });
   };
 
   const handleUpdateProduct = async () => {
-    // console.log(userInput);
     try {
       const res = await axios.post(
         "http://localhost:4500/seller/update",
         userInput
       );
       toast({
-        title: "Product Updated.",
-        description: "Product Updated to Database.",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
+        ...toastProps,
+        title: res.data.msg,
       });
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       toast({
-        title: "Failed to Update Product.",
-        description: "Failed to Updated to Database.",
+        ...toastProps,
+        title: error.message,
         status: "error",
-        duration: 5000,
-        isClosable: true,
       });
       console.log(error);
     }
-
-    setUserInput({
-      type: "",
-      category: "",
-      product_image: "",
-      product_title: "",
-      mrp: "",
-      offer_price: "",
-      product_discount: "",
-      product_rating_count: "",
-    });
   };
+
   return (
     <>
       <Link textDecoration="none" onClick={onOpen}>
@@ -147,9 +122,10 @@ const UpdateProduct = () => {
                 type="file"
                 placeholder="upload Image"
                 name="product_image"
-                value={product_image}
+                value={productImage}
                 onChange={handleInputChange}
               />
+
               <Input
                 type="text"
                 placeholder="Enter Product Title"
@@ -185,13 +161,6 @@ const UpdateProduct = () => {
                 value={product_rating_count}
                 onChange={handleInputChange}
               />
-              {/* <Input
-                type="text"
-                placeholder="Enter seller ID "
-                name="sellerId"
-                value={sellerId}
-                onChange={handleInputChange}
-              /> */}
             </FormControl>
           </ModalBody>
 

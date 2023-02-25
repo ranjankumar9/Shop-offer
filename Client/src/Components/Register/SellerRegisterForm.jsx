@@ -18,9 +18,12 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toastProps } from "../../constant/constants";
 
 const SellerRegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const [userInput, setUserInput] = useState({
     seller_name: "",
@@ -41,30 +44,23 @@ const SellerRegisterForm = () => {
   };
 
   const handleSellerRegister = async () => {
-    console.log(userInput);
-
     try {
       const res = await axios.post(
         "http://localhost:4500/seller/register",
         userInput
       );
       toast({
+        ...toastProps,
         title: res.data.msg,
-        description: "Seller Registered.",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
       });
-      console.log(res);
+      navigate("/seller/login");
+      // console.log(res);
     } catch (error) {
-      toast({
-        title: "Seller Registration Failed.",
-        description: error.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
       console.log(error);
+      toast({
+        title: error.message,
+        status: "error",
+      });
     }
 
     setUserInput({

@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Style/CategoryPage.css";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineHeart } from "react-icons/ai";
 import {  BsSearch } from "react-icons/bs";
-import { Checkbox, CheckboxGroup ,Stack,Text} from '@chakra-ui/react'
+import { Button, Checkbox ,Menu,MenuButton,MenuItem,MenuList,Stack} from '@chakra-ui/react'
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
+
 const CategoryPage = () => {
+  const [price, setPrice] = useState("");
+  const [order, setOrder] = useState("");
+  const [value, setValue] = useState([]);
+  const [ProductData,setProductData]=useState([])
+const navigate=useNavigate()
+  const getData=async()=>{
+    let res =await axios.get(`http://localhost:4500/products/?_sort=${price}`)
+    setProductData(res.data)
+// console.log(res)
+  }
+
+
+     const handleChange = (e) => {
+      setPrice(e.target.value);
+      setOrder(e.target.name);
+    };
+  
+
+
+useEffect(() => {
+  getData()
+}, [price,order,value])
+
+console.log("pro",ProductData)
+
+
+
+
+
+
   return (
     <div className="CategoryPage">
       <div>
@@ -119,19 +153,24 @@ const CategoryPage = () => {
                   />
                 </div>
                 <div className="CategoryProductDataSort">
-                  <div>
-                    <p>Sort by:</p>
-                  </div>
-                  <div>
-                    <select name="" id="">
-                      <option value="">Popularity</option>
-
-                      <option value="">Price Low To High</option>
-                      <option value="">Price High To Low</option>
-                      <option value="">Discount</option>
-                      <option value="">Fresh Arrivals</option>
-                    </select>
-                  </div>
+                <Menu>
+        <MenuButton
+        //  style={{border:"1px solid gray"}}
+          fontSize={["13px", "16px"]}
+          as={Button}
+          rightIcon={<AiOutlineDown />}
+        >
+          Sort By
+        </MenuButton>
+        <MenuList>
+          <MenuItem value="asc" name="price" onClick={handleChange}>Price: Low-High</MenuItem>
+          <MenuItem value="desc" name="price" onClick={handleChange}>Price: High-Low</MenuItem>
+          <MenuItem value="asc" name="rating" onClick={handleChange}>Rating: Low-High</MenuItem>
+          <MenuItem value="desc" name="rating" onClick={handleChange}>Rating: High-Low</MenuItem>
+          <MenuItem value="asc" name="brand" onClick={handleChange}>Name: A-Z</MenuItem>
+          <MenuItem value="desc" name="brand" onClick={handleChange}>Name: Z-A</MenuItem>
+        </MenuList>
+      </Menu>
                 </div>
               </div>
               <div className="CategoryPagePincod">
@@ -144,297 +183,43 @@ const CategoryPage = () => {
               </div>
             </div>
             <div className="CategoryProductMainDiv">
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
+              { ProductData?.map((el,i)=>(
+   <div key={i} className="CategorySingleProduct">
+   <div className="CategoryHeart">
+     <p>
+       {" "}
+       <AiOutlineHeart />
+     </p>
+   </div>
+   <img
+   src={el.product_image}
+    //  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
+     alt=""
+   />
+   <div className="CategoryProductView">
+  
+    <p onClick={() => navigate(`/singleproduct/${el._id}`)}> QUICK VIEW</p>
+    
+       
+   </div>
+   <p className="CategoryProductName">
+     {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`}
+   </p>
+   
+   <div className="CategoryPriceDiv">
+     <p className="CategoryPriceDiscount">Rs {el.mrp}</p>
+     <p className="CategoryPrice">Rs.{el.offer_price}</p>
+     <div className="CategoryOffer">
+       <p>{el.product_discount}% Off</p>
+     </div>
+   </div>
+   <p className="CategoryRatting">4.5 ({el.product_rating_count})</p>
+ </div>
+              ))}
+           
 
-              {/* ............ */}
-
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/k/h/230X258_sharpened/UrbanMark-Gray-Men-s-Slip-SDL382449458-1-a9f10.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n3.sdlcdn.com/imgs/k/j/1/230X258_sharpened/UrbanMark-Tan-Men-s-Sneakers-SDL783469679-1-5d19d.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n3.sdlcdn.com/imgs/k/l/r/230X258_sharpened/UrbanMark-Red-Men-s-Sneakers-SDL017198698-1-8c62e.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n4.sdlcdn.com/imgs/k/j/1/230X258_sharpened/UrbanMark-Black-Men-s-Sneakers-SDL781141733-1-26c2a.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/j/y/3/230X258_sharpened/Impakto-Outdoor-Gray-Casual-Shoes-SDL881795358-1-f5dfc.webp "
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-              <div className="CategorySingleProduct">
-                <div className="CategoryHeart">
-                  <p>
-                    {" "}
-                    <AiOutlineHeart />
-                  </p>
-                </div>
-                <img
-                  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                  alt=""
-                />
-                <div className="CategoryProductView">
-                    <p> QUICK VIEW</p>
-                </div>
-                <p className="CategoryProductName">
-                  ShoeRise Men Canvas Sports Casual Shoes - White Men's
-                </p>
-                <div className="CategoryPriceDiv">
-                  <p className="CategoryPriceDiscount">Rs 1,899</p>
-                  <p className="CategoryPrice">Rs. 799</p>
-                  <div className="CategoryOffer">
-                    <p>58% Off</p>
-                  </div>
-                </div>
-                <p className="CategoryRatting">4.5 (6)</p>
-              </div>
-
+ 
+              
               {/* ....... */}
             </div>
           </div>
