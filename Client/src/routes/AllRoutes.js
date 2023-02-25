@@ -7,11 +7,11 @@ import HomePage from "./../pages/HomePage";
 import Admin from "./../pages/Admin";
 import AdminProfile from "./../Components/Admin/AdminProfile/AdminProfile";
 import CreateProduct from "./../Components/Admin/AddProduct/CreateProduct";
-import Products from "./../Components/Admin/Products";
 import Users from "./../Components/Admin/Sellers/Sellers";
 import Orders from "./../Components/Admin/Orders/Orders";
 import SellerRegister from "../pages/SellerRegister";
 import SellerLogin from "../pages/SellerLogin";
+import Products from "./../Components/Admin/Products/Products";
 
 const AllRoutes = () => {
   return (
