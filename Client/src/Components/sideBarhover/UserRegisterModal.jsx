@@ -42,8 +42,8 @@ const UserRegisterModal = () => {
         userInput
       );
       toast({
-        title: "User Registered Successfully.",
-        description: "User Registered..",
+        title: res.data.msg,
+        description: res.data.msg,
         status: "success",
         duration: 5000,
         isClosable: true,

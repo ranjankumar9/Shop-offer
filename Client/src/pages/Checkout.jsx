@@ -18,3 +18,7 @@ const checkout = () => {
 };
 
 export default checkout;
+
+
+
+// payment page
