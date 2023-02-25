@@ -44,19 +44,6 @@ const UpdateProduct = () => {
   };
   // console.log(userInput);
 
-  {
-    /* "_id": "63f71421e4d1836cfef962eb",
-    "product_image": "https://n3.sdlcdn.com/imgs/k/j/0/230X258_sharpened/GRASS-WALK-Brown-Men-s-SDL141388781-1-42612.JPG",
-    "product_title": "GRASS WALK - Brown Men's Thong Flip Flop",
-    "mrp": "499",
-    "offer_price": "217",
-    "product_discount": "57",
-    "product_rating_count": "57",
-    "category": "mens_footwear",
-    "type": "mens",
-    "sellerId": "63f70b4b55ff80094df94d54" */
-  }
-
   const toast = useToast();
   const {
     type,

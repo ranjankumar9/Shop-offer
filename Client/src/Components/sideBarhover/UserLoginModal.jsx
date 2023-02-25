@@ -42,8 +42,8 @@ const UserLoginModal = () => {
 
       if (res.data.token) {
         toast({
-          title: "User Logged In Successfully.",
-          description: "User Logged In.",
+          title: res.data.msg,
+          description: res.data.msg,
           status: "success",
           duration: 5000,
           isClosable: true,
