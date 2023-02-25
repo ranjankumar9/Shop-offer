@@ -184,7 +184,7 @@ export default function NavbarMain() {
                       gap="10px"
                       
                     >
-                      Cart
+                     <Link to="/cartpage">Cart</Link>
                       
                     </Box>
                     <Box
