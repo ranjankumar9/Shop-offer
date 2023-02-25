@@ -22,7 +22,8 @@ app.use(json());
 app.use("/user", clientUserRouter);
 app.use("/user", UserAuthenticate, ClientCartRouter);
 app.use("/seller", sellerUserRouter);
-app.use("/seller", SellerAuthenticate, sellerProductsRouter);
+// app.use("/seller", SellerAuthenticate, sellerProductsRouter);
+app.use("/seller", sellerProductsRouter);
 app.use("/products", allProductsRouter);
 
 app.listen(process.env.port, async () => {
