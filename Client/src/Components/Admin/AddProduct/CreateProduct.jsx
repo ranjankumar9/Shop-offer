@@ -20,6 +20,7 @@ const CreateProduct = () => {
     offer_price: "",
     product_discount: "",
     product_rating_count: "",
+    sellerId: "",
   });
 
   const types = ["mens", "womens", "home", "kids", "beauty"];
@@ -40,6 +41,7 @@ const CreateProduct = () => {
     offer_price,
     product_discount,
     product_rating_count,
+    sellerId,
   } = userInput;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -171,6 +173,13 @@ const CreateProduct = () => {
           placeholder="Enter Product Rating"
           name="product_rating_count"
           value={product_rating_count}
+          onChange={handleInputChange}
+        />
+        <Input
+          type="text"
+          placeholder="Enter seller ID "
+          name="sellerId"
+          value={sellerId}
           onChange={handleInputChange}
         />
         {/* <Textarea

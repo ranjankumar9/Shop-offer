@@ -2,11 +2,16 @@ const { ProductModel } = require("../../Models/Product.model");
 
 const allProductsRouter = require("express").Router();
 
-allProductsRouter.get("/:type", async (req, res) => {
+allProductsRouter.get("/", async (req, res) => {
   try {
-    const { type } = req.params;
-    const products = await ProductModel.find({ type });
-    res.send(products);
+    const { type } = req.query;
+    if (type) {
+      const products = await ProductModel.find({ type });
+      res.send(products);
+    } else {
+      const products = await ProductModel.find();
+      res.send(products);
+    }
   } catch (error) {
     res.send({ msg: "Something went wrong. Please try again later", error });
   }
