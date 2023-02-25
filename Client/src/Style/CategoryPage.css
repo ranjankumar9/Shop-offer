@@ -47,8 +47,8 @@ padding: 10px 30px;
 }
 .CategorySingleProduct img{
     /* border: 1px solid red; */
-    height: 70%;
-    object-fit: cover;
+    height: 250px;
+    /* object-fit: cover; */
     margin-top: -20px;
 }
 .CategoryPriceDiv{
@@ -77,6 +77,8 @@ padding: 10px 30px;
     line-height: 18px;
     font-size: 15px;
     margin-top: -20px;
+    font-weight: bold;
+    background-color: white;
 }
 .CategoryHeart{
     /* border: 1px solid red; */
