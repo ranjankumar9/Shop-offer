@@ -20,7 +20,6 @@ const CreateProduct = () => {
     offer_price: "",
     product_discount: "",
     product_rating_count: "",
-    sellerId: "",
   });
 
   const types = ["mens", "womens", "home", "kids", "beauty"];
@@ -30,6 +29,11 @@ const CreateProduct = () => {
     home: ["kitchen", "electronics", "adsfg", "ccs", "cccdd"],
   };
   // console.log(userInput);
+
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: localStorage.getItem("token"),
+  };
 
   const toast = useToast();
   const {
@@ -41,7 +45,6 @@ const CreateProduct = () => {
     offer_price,
     product_discount,
     product_rating_count,
-    sellerId,
   } = userInput;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,14 +53,23 @@ const CreateProduct = () => {
 
   const handleAddProduct = async () => {
     console.log(userInput);
+
     try {
       const res = await axios.post(
         "http://localhost:4500/seller/post",
         userInput
       );
+
+      // const res = await axios.post("http://localhost:4500/seller/post", {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     authorization: localStorage.getItem("token"),
+      //   },
+      //   userInput,
+      // });
       toast({
-        title: "Product Added.",
-        description: "Product Added to Database.",
+        title: res.data.msg,
+        description: res.data.msg,
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -66,7 +78,7 @@ const CreateProduct = () => {
     } catch (error) {
       toast({
         title: "Failed to Add Product.",
-        description: "Failed to Add Product to Database.",
+        description: error.message,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -74,16 +86,16 @@ const CreateProduct = () => {
       console.log(error);
     }
 
-    setUserInput({
-      type: "",
-      category: "",
-      product_image: "",
-      product_title: "",
-      mrp: "",
-      offer_price: "",
-      product_discount: "",
-      product_rating_count: "",
-    });
+    // setUserInput({
+    //   type: "",
+    //   category: "",
+    //   product_image: "",
+    //   product_title: "",
+    //   mrp: "",
+    //   offer_price: "",
+    //   product_discount: "",
+    //   product_rating_count: "",
+    // });
   };
   return (
     <VStack
@@ -96,16 +108,12 @@ const CreateProduct = () => {
         Add Product
       </Heading>
       <FormControl className="form">
-        {/* <FormLabel>Select Category:</FormLabel> */}
         <Select
           placeholder="Select Type"
           name="type"
           value={type}
           onChange={handleInputChange}
         >
-          {/* <option value="a">a</option>
-          <option value="b">b</option>
-          <option value="c">c</option> */}
           {types.map((typ) => {
             return (
               <option key={typ} value={typ}>
@@ -128,11 +136,8 @@ const CreateProduct = () => {
                 </option>
               );
             })}
-          {/* <option value="mens">mens</option>
-          <option value="womens">womens</option>
-          <option value="kids">kids</option> */}
         </Select>
-        {/* <FormLabel>Select Photo:</FormLabel> */}
+
         <Input
           type="file"
           placeholder="upload Image"
@@ -175,42 +180,10 @@ const CreateProduct = () => {
           value={product_rating_count}
           onChange={handleInputChange}
         />
-        <Input
-          type="text"
-          placeholder="Enter seller ID "
-          name="sellerId"
-          value={sellerId}
-          onChange={handleInputChange}
-        />
-        {/* <Textarea
-          placeholder="Enter Product Description"
-          name="description"
-          value={description}
-          onChange={handleInputChange}
-        /> */}
-        {/* <Input
-          type="number"
-          placeholder="Enter Your Price"
-          name="price"
-          value={price}
-          onChange={handleInputChange}
-        /> */}
-        {/* <NumberInput max={50} min={10}>
-          <NumberInputField
-            placeholder="Enter Your Quantity"
-            name="quantity"
-            value={quantity}
-            onChange={handleInputChange}
-          />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput> */}
+
         <Button borderRadius="5px" size="md" onClick={handleAddProduct}>
           Add Product
         </Button>
-        {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
       </FormControl>
     </VStack>
   );

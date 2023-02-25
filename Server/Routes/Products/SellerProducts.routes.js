@@ -4,7 +4,9 @@ const sellerProductsRouter = require("express").Router();
 sellerProductsRouter.get("/get", async (req, res) => {
   try {
     const { sellerId } = req.body;
+    // console.log(sellerId);
     const sellerData = await ProductModel.find({ sellerId });
+
     res.send(sellerData);
   } catch (error) {
     res.send({ msg: "Something went wrong. Please try again later", error });
@@ -21,7 +23,7 @@ sellerProductsRouter.post("/post", async (req, res) => {
   }
 });
 
-sellerProductsRouter.patch("/update", async (req, res) => {
+sellerProductsRouter.patch("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     await ProductModel.findByIdAndUpdate({ _id: id }, req.body);
@@ -31,10 +33,11 @@ sellerProductsRouter.patch("/update", async (req, res) => {
   }
 });
 
-sellerProductsRouter.delete("/delete", async (req, res) => {
+sellerProductsRouter.delete("/delete/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    await ProductModel.findByIdAndUpdate({ _id: id }, req.body);
+
+    await ProductModel.findByIdAndDelete({ _id: id });
     res.send({ msg: "Items deleted" });
   } catch (error) {
     res.send({ msg: "Something went wrong. Please try again later", error });

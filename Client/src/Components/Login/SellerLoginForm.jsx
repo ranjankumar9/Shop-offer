@@ -43,7 +43,7 @@ const SellerLoginForm = () => {
       if (res.data.token) {
         toast({
           title: "Seller Logged In Successfully.",
-          description: "Seller Logged In.",
+          description: res.data.msg,
           status: "success",
           duration: 5000,
           isClosable: true,
