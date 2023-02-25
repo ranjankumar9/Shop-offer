@@ -1,31 +1,25 @@
 import {
   Button,
   FormControl,
-  FormLabel,
   Heading,
   Input,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Select,
-  Stack,
-  Textarea,
   useToast,
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import axios from "axios";
 
 const CreateProduct = () => {
   const [userInput, setUserInput] = useState({
     type: "",
     category: "",
-    file: "",
-    title: "",
-    description: "",
-    price: "",
-    quantity: "",
+    product_image: "",
+    product_title: "",
+    mrp: "",
+    offer_price: "",
+    product_discount: "",
+    product_rating_count: "",
   });
 
   const types = ["mens", "womens", "home", "kids", "beauty"];
@@ -37,31 +31,56 @@ const CreateProduct = () => {
   // console.log(userInput);
 
   const toast = useToast();
-  const { type, category, file, title, description, price, quantity } =
-    userInput;
+  const {
+    type,
+    category,
+    product_image,
+    product_title,
+    mrp,
+    offer_price,
+    product_discount,
+    product_rating_count,
+  } = userInput;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInput({ ...userInput, [name]: value });
   };
-  const handleAddProduct = () => {
-    console.log(userInput);
 
-    toast({
-      title: "Product Added.",
-      description: "Product Added to Database.",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
+  const handleAddProduct = async () => {
+    console.log(userInput);
+    try {
+      const res = await axios.post(
+        "http://localhost:4500/seller/post",
+        userInput
+      );
+      toast({
+        title: "Product Added.",
+        description: "Product Added to Database.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      console.log(res);
+    } catch (error) {
+      toast({
+        title: "Failed to Add Product.",
+        description: "Failed to Add Product to Database.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      console.log(error);
+    }
 
     setUserInput({
       type: "",
       category: "",
-      file: "",
-      title: "",
-      description: "",
-      price: "",
-      quantity: "",
+      product_image: "",
+      product_title: "",
+      mrp: "",
+      offer_price: "",
+      product_discount: "",
+      product_rating_count: "",
     });
   };
   return (
@@ -115,15 +134,43 @@ const CreateProduct = () => {
         <Input
           type="file"
           placeholder="upload Image"
-          name="file"
-          value={file}
+          name="product_image"
+          value={product_image}
           onChange={handleInputChange}
         />
         <Input
           type="text"
           placeholder="Enter Product Title"
-          name="title"
-          value={title}
+          name="product_title"
+          value={product_title}
+          onChange={handleInputChange}
+        />
+        <Input
+          type="text"
+          placeholder="Enter Product Market Retail Price"
+          name="mrp"
+          value={mrp}
+          onChange={handleInputChange}
+        />
+        <Input
+          type="text"
+          placeholder="Enter Product Offer Price"
+          name="offer_price"
+          value={offer_price}
+          onChange={handleInputChange}
+        />
+        <Input
+          type="text"
+          placeholder="Enter Product Discount %"
+          name="product_discount"
+          value={product_discount}
+          onChange={handleInputChange}
+        />
+        <Input
+          type="text"
+          placeholder="Enter Product Rating"
+          name="product_rating_count"
+          value={product_rating_count}
           onChange={handleInputChange}
         />
         {/* <Textarea
@@ -132,14 +179,14 @@ const CreateProduct = () => {
           value={description}
           onChange={handleInputChange}
         /> */}
-        <Input
+        {/* <Input
           type="number"
           placeholder="Enter Your Price"
           name="price"
           value={price}
           onChange={handleInputChange}
-        />
-        <NumberInput max={50} min={10}>
+        /> */}
+        {/* <NumberInput max={50} min={10}>
           <NumberInputField
             placeholder="Enter Your Quantity"
             name="quantity"
@@ -150,7 +197,7 @@ const CreateProduct = () => {
             <NumberIncrementStepper />
             <NumberDecrementStepper />
           </NumberInputStepper>
-        </NumberInput>
+        </NumberInput> */}
         <Button borderRadius="5px" size="md" onClick={handleAddProduct}>
           Add Product
         </Button>

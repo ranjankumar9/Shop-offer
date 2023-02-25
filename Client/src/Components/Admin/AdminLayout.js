@@ -1,13 +1,10 @@
-import { Flex } from "@chakra-ui/react";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminMenu from "./AdminMenu/AdminMenu";
 
 const AdminLayout = () => {
   return (
-    <div
-    //  style={}
-    >
+    <div>
       <AdminMenu />
       <Outlet />
     </div>
