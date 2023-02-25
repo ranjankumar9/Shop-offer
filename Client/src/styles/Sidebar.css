@@ -126,7 +126,8 @@
 
 /*  */
 .float-content {
-  background-color: rgba(217, 223, 225, 0.237);
+  z-index: 9;
+  background-color: #fff;
   position: absolute;
   width: 900px;
   top: 0;
