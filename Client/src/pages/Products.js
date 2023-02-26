@@ -83,8 +83,8 @@ useEffect(() => {
   <Checkbox value="kids" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
     Kids
   </Checkbox>
-  <Checkbox value="shoes" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
-    Shoes
+  <Checkbox value="home" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
+    Home
   </Checkbox>
   <Checkbox value="clothes" isDisabled={true} onChange={(e)=>setCate(e.target.value)} colorScheme='green'  >
     Clothes
