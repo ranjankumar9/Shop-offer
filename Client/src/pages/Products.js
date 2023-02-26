@@ -203,7 +203,8 @@ console.log("pro",ProductData)
        
    </div>
    <p className="CategoryProductName">
-     {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`}
+    {el.product_title}
+     {/* {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`} */}
    </p>
    
    <div className="CategoryPriceDiv">

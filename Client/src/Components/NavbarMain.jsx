@@ -189,7 +189,7 @@ export default function NavbarMain() {
               </MenuButton>
               <MenuList>
                 <MenuItem>
-                  <Link to="/">
+                  <Link to="/myorders">
                     <Flex justify="center" align={"center"} gap="10px">
                       <BsBox fontSize={"16px"} />
                       <Text fontSize="14px">Your Orders</Text>
