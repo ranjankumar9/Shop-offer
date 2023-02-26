@@ -20,6 +20,7 @@ const UserLoginModal = () => {
     email: "",
     pass: "",
   });
+  
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
@@ -78,7 +79,13 @@ const UserLoginModal = () => {
 
   return (
     <>
-      <Button textDecoration="none" onClick={onOpen} w={"full"}>
+      <Button
+        bgColor="crimson"
+        colorScheme={"red"}
+        textDecoration="none"
+        onClick={onOpen}
+        w={"full"}
+      >
         Login
       </Button>
       <Modal

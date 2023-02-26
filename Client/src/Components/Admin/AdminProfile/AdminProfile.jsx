@@ -14,21 +14,24 @@ const AdminProfile = () => {
     <Container
       centerContent="center"
       py="80px"
-      className="admin-profile-container"
-      border="1px solid red"
+      // className="admin-profile-container"
+      border="1px solid gray"
+      borderRadius="10px"
+      bgColor="gray.100"
     >
       <Wrap>
         <WrapItem>
           <Avatar
             size="2xl"
             name="Segun Adebayo"
-            src="https://avatars.githubusercontent.com/u/107467642?v=4"
+            src="https://avatars.githubusercontent.?v="
+            bgColor="#dedede"
           />
         </WrapItem>
       </Wrap>
       <FormControl>
         <FormLabel>Name:</FormLabel>
-        <Input type="text" />
+        <Input type="text" variant="flushed" />
         <FormLabel>Username:</FormLabel>
         <Input type="text" />
         <FormLabel>Email:</FormLabel>
