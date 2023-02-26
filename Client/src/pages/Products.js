@@ -9,14 +9,22 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [price, setPrice] = useState("");
+  const [cate, setCate] = useState("");
+
   const [order, setOrder] = useState("");
   const [value, setValue] = useState([]);
   const [ProductData,setProductData]=useState([])
+  console.log("PRO",ProductData)
 const navigate=useNavigate()
   const getData=async()=>{
-    let res =await axios.get(`http://localhost:4500/products/?_sort=${price}`)
-    setProductData(res.data)
-// console.log(res)
+    try{
+      let res =await axios.get(`http://localhost:4500/products`)
+      setProductData(res.data)
+  // console.log(res.data)
+    }catch(err){
+      console.log("errr",err)
+    }
+ 
   }
 
 
@@ -29,10 +37,10 @@ const navigate=useNavigate()
 
 useEffect(() => {
   getData()
-}, [price,order,value])
+}, [price,order,value,cate])
 
-console.log("pro",ProductData)
-
+// console.log("pro",ProductData)
+// console.log("category",cate)
 
 
 
@@ -46,25 +54,25 @@ console.log("pro",ProductData)
             <p>Trending searches</p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Mens </p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Women's </p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Shoes </p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Bags </p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Kitchen </p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Kitchen </p>
           </div>
           <div>
-            <p>Kitchen Product</p>
+            <p>Kitchen  </p>
           </div>
         </div>
 
@@ -73,19 +81,19 @@ console.log("pro",ProductData)
                 <div className="SortByCategoryInput">
                     <p> By Category</p>
                 <Stack spacing={2} direction='column'>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox value="men" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
     Men's
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox value="women" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
     Women's
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox value="kids" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
     Kids
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox value="shoes" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
     Shoes
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox value="clothes" onChange={(e)=>setCate(e.target.value)} colorScheme='green' defaultChecked>
     Clothes
   </Checkbox>
 </Stack>
@@ -93,19 +101,19 @@ console.log("pro",ProductData)
                 <div className="SortByCategoryInput">
                     <p> Random sort  </p>
                 <Stack spacing={2} direction='column'>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green' value="asc" onClick={handleChange} defaultChecked>
     Price : Low - High
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green' value="desc" onClick={handleChange} defaultChecked>
   Price : High - Low
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green' onClick={handleChange} defaultChecked>
     Rating : Low - High
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green' value="asc"  onClick={handleChange} defaultChecked>
     Name : A-Z
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green' value="desc" onClick={handleChange} defaultChecked>
     Name : Z-A
   </Checkbox>
 </Stack>
@@ -163,12 +171,12 @@ console.log("pro",ProductData)
           Sort By
         </MenuButton>
         <MenuList>
-          <MenuItem value="asc" name="price" onClick={handleChange}>Price: Low-High</MenuItem>
-          <MenuItem value="desc" name="price" onClick={handleChange}>Price: High-Low</MenuItem>
-          <MenuItem value="asc" name="rating" onClick={handleChange}>Rating: Low-High</MenuItem>
-          <MenuItem value="desc" name="rating" onClick={handleChange}>Rating: High-Low</MenuItem>
-          <MenuItem value="asc" name="brand" onClick={handleChange}>Name: A-Z</MenuItem>
-          <MenuItem value="desc" name="brand" onClick={handleChange}>Name: Z-A</MenuItem>
+          <MenuItem value="asc" name="asc" onClick={handleChange}>Price: Low-High</MenuItem>
+          <MenuItem value="desc" name="desc" onClick={handleChange}>Price: High-Low</MenuItem>
+          <MenuItem value="asc" name="asc" onClick={handleChange}>Rating: Low-High</MenuItem>
+          <MenuItem value="desc" name="desc" onClick={handleChange}>Rating: High-Low</MenuItem>
+          <MenuItem value="asc" name="asc" onClick={handleChange}>Name: A-Z</MenuItem>
+          <MenuItem value="desc" name="desc" onClick={handleChange}>Name: Z-A</MenuItem>
         </MenuList>
       </Menu>
                 </div>
@@ -203,7 +211,8 @@ console.log("pro",ProductData)
        
    </div>
    <p className="CategoryProductName">
-     {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`}
+    {el.product_title}
+     {/* {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`} */}
    </p>
    
    <div className="CategoryPriceDiv">

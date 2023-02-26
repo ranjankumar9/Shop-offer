@@ -25,6 +25,7 @@ const Carousel = () => {
   const progressContent = useRef(null);
 
   return (
+     
     <div className="carousel-1">
       <div className="slider-wrapper">
         <Swiper
