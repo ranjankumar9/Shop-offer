@@ -1,4 +1,3 @@
-import { Link, LinkOverlay, useDisclosure, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import {
   Modal,
@@ -11,9 +10,14 @@ import {
   Button,
   FormControl,
   Input,
-  FormLabel,
+  useDisclosure,
+  useToast,
+  Flex,
+  Text,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const UserRegisterModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -70,9 +74,13 @@ const UserRegisterModal = () => {
 
   return (
     <>
-      <Link textDecoration="none" onClick={onOpen}>
-        Register
+      <Link onClick={onOpen}>
+        <Flex justify={"center"} alignItems={"center"} gap="10px">
+          <FaRegUserCircle fontSize={"16px"} />
+          <Text fontSize={"14px"}> Register</Text>
+        </Flex>
       </Link>
+
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}

@@ -81,8 +81,8 @@ const Sidebar = () => {
       <div className="categories">
         <h1>More Categories</h1>
       </div>
-      <div className="secondBlock">
-        <div>Automotives</div>
+      <div className="secondBlock ">
+        <div className="item">Automotives</div>
         <div>Mobiles & Accesories</div>
         <div>Electronics</div>
         <div>Sports, Fitness & Outdoor</div>
@@ -91,30 +91,30 @@ const Sidebar = () => {
         <div>Hobbies</div>
       </div>
       <div className="categories">
-        <h1>TRENDING SEARCHES</h1>
+        <h1>Trending Searches</h1>
       </div>
       <div className="thirdBlock">
-        <div>
+        <div className="center">
           <CiSearch />
           Kitchen Product
         </div>
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Shoes for Men
         </div>
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Kurti Set
         </div>
 
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Sandal Men
         </div>
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Sport shoe Men

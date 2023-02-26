@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, useToast } from "@chakra-ui/react";
-import { BsTrash, BsTrashFill } from "react-icons/bs";
-import { TbEdit } from "react-icons/tb";
+import { BsTrashFill } from "react-icons/bs";
+
 import UpdateProduct from "./UpdateProduct";
 import axios from "axios";
 
-const Products = () => {
+const SellerProducts = () => {
   const [products, setProducts] = useState([]);
   const toast = useToast();
 
@@ -88,7 +88,7 @@ const Products = () => {
               <td data-label="Discount">{product_discount}%</td>
               <td data-label="Update">
                 <Button variant={"unstyled"}>
-                  <UpdateProduct product={product} />
+                  <UpdateProduct product={product} getProducts={getProducts} />
                 </Button>
               </td>
               <td data-label="Remove">
@@ -107,4 +107,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default SellerProducts;
