@@ -1,6 +1,6 @@
 const WomenHover = () => {
   return (
-    <div className="men-navbar">
+    <div className="men-navbar sub-category-heading">
       {/* column 1 */}
       <div className="column">
         <div className="section">

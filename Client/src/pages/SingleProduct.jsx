@@ -5,7 +5,6 @@ import {
   Image,
   SimpleGrid,
   Text,
-  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import "../Style/CategoryPage.css";
@@ -215,14 +214,13 @@ _id
                 size="lg"
                 colorScheme="red"
                 onClick={() => {
-                  
                   dispatch(
                     addToCart({
                       userId: data._id,
                       product_image,
                       product_title,
                       offer_price,
-                      quantity:1
+                      quantity: 1,
                     })
                   );
                 }}

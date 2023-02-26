@@ -18,6 +18,7 @@ import { toastProps, categories, types } from "../../../constant/constants";
 
 const UpdateProduct = ({
   product: {
+    _id,
     type,
     category,
     product_image,
@@ -27,20 +28,21 @@ const UpdateProduct = ({
     product_discount,
     product_rating_count,
   },
+  getProducts,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [productImage, setproductImage] = useState("");
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const [userInput, setUserInput] = useState({
-    type: type,
-    category: category,
-    product_image: "",
-    product_title: product_title,
-    mrp: mrp,
-    offer_price: offer_price,
-    product_discount: product_discount,
-    product_rating_count: product_rating_count,
+    type,
+    category,
+    product_image,
+    product_title,
+    mrp,
+    offer_price,
+    product_discount,
+    product_rating_count,
   });
 
   const toast = useToast();
@@ -51,16 +53,18 @@ const UpdateProduct = ({
     else setUserInput({ ...userInput, [name]: value });
   };
 
-  const handleUpdateProduct = async () => {
+  const handleUpdateProduct = async (id) => {
     try {
-      const res = await axios.post(
-        "http://localhost:4500/seller/update",
+      const res = await axios.patch(
+        `http://localhost:4500/seller/update/${id}`,
         userInput
       );
       toast({
         ...toastProps,
         title: res.data.msg,
       });
+      getProducts();
+      onClose();
       // console.log(res);
     } catch (error) {
       toast({
@@ -92,7 +96,7 @@ const UpdateProduct = ({
               <Select
                 placeholder="Select Type"
                 name="type"
-                value={type}
+                value={userInput.type}
                 onChange={handleInputChange}
               >
                 {types.map((typ) => {
@@ -106,7 +110,7 @@ const UpdateProduct = ({
               <Select
                 placeholder="Select Category"
                 name="category"
-                value={category}
+                value={userInput.category}
                 onChange={handleInputChange}
               >
                 {type &&
@@ -130,42 +134,46 @@ const UpdateProduct = ({
                 type="text"
                 placeholder="Enter Product Title"
                 name="product_title"
-                value={product_title}
+                value={userInput.product_title}
                 onChange={handleInputChange}
               />
               <Input
                 type="text"
                 placeholder="Enter Product Market Retail Price"
                 name="mrp"
-                value={mrp}
+                value={userInput.mrp}
                 onChange={handleInputChange}
               />
               <Input
                 type="text"
                 placeholder="Enter Product Offer Price"
                 name="offer_price"
-                value={offer_price}
+                value={userInput.offer_price}
                 onChange={handleInputChange}
               />
               <Input
                 type="text"
                 placeholder="Enter Product Discount %"
                 name="product_discount"
-                value={product_discount}
+                value={userInput.product_discount}
                 onChange={handleInputChange}
               />
               <Input
                 type="text"
                 placeholder="Enter Product Rating"
                 name="product_rating_count"
-                value={product_rating_count}
+                value={userInput.product_rating_count}
                 onChange={handleInputChange}
               />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="red" mr={3} onClick={handleUpdateProduct}>
+            <Button
+              colorScheme="red"
+              mr={3}
+              onClick={() => handleUpdateProduct(_id)}
+            >
               Update
             </Button>
           </ModalFooter>

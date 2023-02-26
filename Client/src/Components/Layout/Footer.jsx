@@ -215,8 +215,8 @@ import {
   Flex,
   Tag,
   useColorModeValue,
+  Image,
 } from "@chakra-ui/react";
-import { ReactNode } from "react";
 
 const Logo = () => {
   return (
@@ -256,7 +256,7 @@ const Footer = () => {
               <Link href={"#"}>Features</Link>
               <Tag
                 size={"sm"}
-                bg={useColorModeValue("green.300", "green.800")}
+                bg={useColorModeValue("red.300", "red.800")}
                 ml={2}
                 color={"white"}
               >
@@ -311,10 +311,22 @@ const Footer = () => {
             ml: 8,
           }}
         >
-          <Logo />
+          <Link to="/">
+            <Box>
+              <Image
+                display={{ sm: "center", md: "center", lg: "center" }}
+                boxSize="60px"
+                width={"200px"}
+                objectFit="cover"
+                src={
+                  "https://www.logo.wine/a/logo/Snapdeal/Snapdeal-White-Dark-Background-Logo.wine.svg"
+                }
+              />
+            </Box>
+          </Link>
         </Flex>
         <Text pt={6} fontSize={"sm"} textAlign={"center"}>
-          © 2022 Chakra Templates. All rights reserved
+          © {new Date().getFullYear()} ShopOffer.com. All rights reserved
         </Text>
       </Box>
     </Box>
