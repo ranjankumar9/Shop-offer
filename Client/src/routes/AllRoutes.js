@@ -14,6 +14,8 @@ import SellerProducts from "../Components/Admin/Products/SellerProducts";
 import CartPage from "../pages/CartPage";
 import SingleProduct from "./../pages/SingleProduct";
 import Products from "../pages/Products";
+import Form from '../pages/Payment Page/Form'
+import MyOrders from "../pages/MyOrders";
 
 const AllRoutes = () => {
   return (
@@ -27,6 +29,8 @@ const AllRoutes = () => {
         <Route exact path="/singleproduct/:_id" element={<SingleProduct />} />
         <Route path="/cart" element={<CartPage />} />
         <Route exact path="/products" element={<Products />} />
+        <Route exact path="/payment" element={<Form />} />
+        <Route exact path="/myorders" element={<MyOrders/>} />
 
         <Route exact path="/" element={<Admin />}>
           <Route path="/admin" element={<AdminProfile />} />

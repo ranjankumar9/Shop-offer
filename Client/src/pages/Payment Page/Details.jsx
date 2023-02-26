@@ -45,7 +45,7 @@ export default function Details() {
         </Typography>
         <TextField
           id="filled-basic"
-          label="Username"
+          label="Name"
           variant="filled"
           className={classes.text}
           required

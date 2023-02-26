@@ -138,7 +138,7 @@ export default class PayCard extends React.Component {
                       type="tel"
                       name="cvc"
                       className="form-control"
-                      placeholder="CVC"
+                      placeholder="CVV"
                       pattern="\d{3,4}"
                       required
                       style={{ width: 300, margin: "5px" }}
