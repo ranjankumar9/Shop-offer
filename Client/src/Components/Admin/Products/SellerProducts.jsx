@@ -16,7 +16,9 @@ const SellerProducts = () => {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:4500/seller/get");
+      const res = await axios.get(
+        "https://unusual-cyan-cygnet.cyclic.app/seller/get"
+      );
       console.log(res);
       setProducts(res.data);
     } catch (error) {
@@ -29,7 +31,9 @@ const SellerProducts = () => {
   }, []);
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`https://unusual-cyan-cygnet.cyclic.app/seller/delete/${id}`);
+      await axios.delete(
+        `https://unusual-cyan-cygnet.cyclic.app/seller/delete/${id}`
+      );
       toast({
         title: "Product Deleted.",
         description: "Product Deleted from Database.",
