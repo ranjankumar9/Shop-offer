@@ -14,23 +14,25 @@ import { StarIcon } from "@chakra-ui/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addToCart } from "../Redux/CartReducer/reducer";
-const SingleProduct = () => {
+import { useDispatch} from 'react-redux';
+
+
+const SingleProduct = (dataId) => {
   const toast = useToast();
+  const dispatch = useDispatch()
   const { _id } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [data, setData] = useState({});
-  const { product_image, product_title, offer_price, quantity } = data;
+  const {product_image,mrp} = dataId
   useEffect(() => {
     axios.get(`http://localhost:4500/products/${_id}`).then((r) => {
-      console.log(r);
+      // console.log(r);
       setData(r.data[0]);
     });
   }, [_id]);
-
+  
   // console.log(data)
   //  const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -38,18 +40,19 @@ const SingleProduct = () => {
   //   "Content-Type": "application/json",
   //   Authorization: localStorage.getItem("token"),
   // };
-  // const addProduct = (payload) => {
+  // const addProduct = (data) => {
   //   axios
   //     .post(
   //       "http://localhost:4500/user/post",
-  //         payload
-
+  //       { product: { product: _id, quntity: 1 } },
+  //       // { headers: { token: localStorage.getItem("token") } }
   //     )
   //     .then((r) => {
-  //       if (r.data.msg) {
+  //       console.log(r.data)
+  //       if (r.data.msg==true) {
   //         toast({
   //           title: "Product",
-  //           description: r.data.msg,
+  //           description: r.data,
   //           status: "success",
   //           duration: 5000,
   //           isClosable: true,
@@ -59,7 +62,7 @@ const SingleProduct = () => {
   //           title: "Product",
   //           description: r.data,
   //           status: "error",
-  //           duration: 5000,
+  //           duration: 9000,
   //           isClosable: true,
   //         });
   //       }
@@ -108,7 +111,7 @@ const SingleProduct = () => {
           <Box ml={7}>
             <Flex>
               <Text fontSize="22px" w="80%" mb={0}>
-                {data?.name}
+                {data?.product_title}
               </Text>
 
               {/* <Box><AiOutlineHeart/></Box> */}
@@ -133,36 +136,6 @@ const SingleProduct = () => {
               <p style={{ textDecoration: "line-through" }}>RS:{data?.mrp}</p>
               <Text>(Inclusive of all taxes)</Text>
             </Flex>
-            {/* category
-: 
-"mens_footwear"
-mrp
-: 
-"499"
-offer_price
-: 
-"217"
-product_discount
-: 
-"57"
-product_image
-: 
-"https://n3.sdlcdn.com/imgs/k/j/0/230X258_sharpened/GRASS-WALK-Brown-Men-s-SDL141388781-1-42612.JPG"
-product_rating_count
-: 
-"57"
-product_title
-: 
-"GRASS WALK - Brown Men's Thong Flip Flop"
-sellerId
-: 
-"63f70b4b55ff80094df94d54"
-type
-: 
-"mens"
-_id
-: 
-"63f71421e4d1836cfef962eb" */}
             <Flex gap={3}>
               <Flex gap={3}>
                 <Text style={{ fontSize: "22px", color: "red" }}>
@@ -223,6 +196,8 @@ _id
                       quantity: 1,
                     })
                   );
+                onClick={(ele) => {
+                  dispatch(addToCart({_id,product_image,mrp}))
                 }}
               >
                 ADD TO CART
@@ -232,7 +207,7 @@ _id
                   size="lg"
                   colorScheme="yellow"
                   color="white"
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/payment")}
                 >
                   BUY NOW
                 </Button>
