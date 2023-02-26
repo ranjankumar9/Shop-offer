@@ -4,28 +4,29 @@ import { AiOutlineDown, AiOutlineHeart } from "react-icons/ai";
 import {  BsSearch } from "react-icons/bs";
 import { Button, Checkbox ,Menu,MenuButton,MenuItem,MenuList,Stack} from '@chakra-ui/react'
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 const Products = () => {
-  const [price, setPrice] = useState("");
-  const [cate, setCate] = useState("");
-
-  const [order, setOrder] = useState("");
-  const [value, setValue] = useState([]);
+  // const { Categories } = useParams();
+  const [price, setPrice] = useState("asc");
+  const [cate, setCate] = useState("
+  const getData=async()=>{men's");
+ 
+  const [order, setOrder] = useState("asc");
+  // const [value, setValue] = useState([]);
   const [ProductData,setProductData]=useState([])
-  console.log("PRO",ProductData)
-const navigate=useNavigate()
-  const getData=async()=>{
+  con
     try{
-      let res =await axios.get(`https://unusual-cyan-cygnet.cyclic.app/products`)
+      let res =await axios.get(`https://unusual-cyan-cygnet.cyclic.app/products?type=${cate}&sort=offer_price&order=${price}&_order=${order}`)
       setProductData(res.data)
   // console.log(res.data)
     }catch(err){
       console.log("errr",err)
     }
- 
+    // /?type=womens&sort=offer_price&order=${price}&_order=${order}category=womens_footwear
   }
+  console.log("womens",ProductData)
 
 
      const handleChange = (e) => {
@@ -37,10 +38,9 @@ const navigate=useNavigate()
 
 useEffect(() => {
   getData()
-}, [price,order,value,cate])
+}, [price,order,cate])
 
-// console.log("pro",ProductData)
-// console.log("category",cate)
+ 
 
 
 
@@ -53,27 +53,19 @@ useEffect(() => {
           <div className="TreandingMainDiv" style={{border:"none",backgroundColor:"rgb(242, 241, 241)"}}>
             <p>Trending searches</p>
           </div>
-          <div>
+          <div onClick={()=>setCate("mens")}>
             <p>Mens </p>
           </div>
-          <div>
+          <div onClick={()=>setCate("womens")}>
             <p>Women's </p>
           </div>
           <div>
-            <p>Shoes </p>
+            <p onClick={()=>setCate("kids")}>Kids </p>
           </div>
           <div>
-            <p>Bags </p>
+            <p onClick={()=>setCate("home")}>Home & Kitchen </p>
           </div>
-          <div>
-            <p>Kitchen </p>
-          </div>
-          <div>
-            <p>Kitchen </p>
-          </div>
-          <div>
-            <p>Kitchen  </p>
-          </div>
+           
         </div>
 
         <div className="CategoryMainDiv">
@@ -81,19 +73,19 @@ useEffect(() => {
                 <div className="SortByCategoryInput">
                     <p> By Category</p>
                 <Stack spacing={2} direction='column'>
-  <Checkbox value="men" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
+  <Checkbox value="mens" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
     Men's
   </Checkbox>
-  <Checkbox value="women" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
+  <Checkbox value="womens" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
     Women's
   </Checkbox>
-  <Checkbox value="kids" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
+  <Checkbox value="kids" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
     Kids
   </Checkbox>
-  <Checkbox value="shoes" colorScheme='green' onChange={(e)=>setCate(e.target.value)} defaultChecked>
-    Shoes
+  <Checkbox value="home" colorScheme='green' onChange={(e)=>setCate(e.target.value)}  >
+    Home
   </Checkbox>
-  <Checkbox value="clothes" onChange={(e)=>setCate(e.target.value)} colorScheme='green' defaultChecked>
+  <Checkbox value="clothes" isDisabled={true} onChange={(e)=>setCate(e.target.value)} colorScheme='green'  >
     Clothes
   </Checkbox>
 </Stack>
@@ -101,19 +93,19 @@ useEffect(() => {
                 <div className="SortByCategoryInput">
                     <p> Random sort  </p>
                 <Stack spacing={2} direction='column'>
-  <Checkbox colorScheme='green' value="asc" onClick={handleChange} defaultChecked>
+  <Checkbox colorScheme='green' value="asc" onChange={()=>setPrice("asc")}  >
     Price : Low - High
   </Checkbox>
-  <Checkbox colorScheme='green' value="desc" onClick={handleChange} defaultChecked>
+  <Checkbox colorScheme='green' value="desc" onChange={()=>setPrice("desc")}  >
   Price : High - Low
   </Checkbox>
-  <Checkbox colorScheme='green' onClick={handleChange} defaultChecked>
+  <Checkbox colorScheme='green' onClick={handleChange}  >
     Rating : Low - High
   </Checkbox>
-  <Checkbox colorScheme='green' value="asc"  onClick={handleChange} defaultChecked>
+  <Checkbox colorScheme='green' value="asc"  onClick={handleChange}  >
     Name : A-Z
   </Checkbox>
-  <Checkbox colorScheme='green' value="desc" onClick={handleChange} defaultChecked>
+  <Checkbox colorScheme='green' value="desc" onClick={handleChange}  >
     Name : Z-A
   </Checkbox>
 </Stack>
@@ -122,19 +114,19 @@ useEffect(() => {
                 <div className="SortByCategoryInput">
                     <p> By Ratting</p>
                 <Stack spacing={2} direction='column'>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green'  >
     5
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green'  >
     4+
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green'  >
     3+
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green'  >
     2.5+
   </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
+  <Checkbox colorScheme='green'  >
     2+
   </Checkbox>
 </Stack>
@@ -200,7 +192,7 @@ useEffect(() => {
      </p>
    </div>
    <img
-   src={el.product_image}
+   src={el.product_image?(el.product_image):("https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921")}
     //  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
      alt=""
    />
@@ -211,8 +203,8 @@ useEffect(() => {
        
    </div>
    <p className="CategoryProductName">
-    {el.product_title}
-     {/* {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`} */}
+    {/* {el.product_title} */}
+     {el.product_title.length < 20 ? el.product_title : `${el.product_title.slice(0, 20)}`}
    </p>
    
    <div className="CategoryPriceDiv">

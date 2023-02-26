@@ -1,3 +1,27 @@
+
+
+.CategoryMainDiv{
+    /* border: 1px solid red; */
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+gap: 5px;
+padding: 10px 10px;
+ 
+}
+
+.CategoryFilterDiv{
+    /* border: 1px solid black; */
+    width: 20%;
+    background-color: white;
+ }
+
+.CAtegoryProductDiv{
+    /* border: 1px solid green; */
+    width: 80%;
+    /* display: flex;
+
 .CategoryMainDiv {
   /* border: 1px solid red; */
   width: 100%;
@@ -22,6 +46,7 @@
   /* border: 1px solid green; */
   width: 80%;
   /* display: flex;
+
     flex-wrap: wrap; */
   background-color: white;
 }
