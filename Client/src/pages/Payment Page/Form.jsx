@@ -16,8 +16,10 @@ import Details from "./Details";
 import PaymentMode from "./PaymentMode";
 import Success from "./Success";
 import PayCard from "./PayCard";
+import axios from 'axios'
 import Footer from "./Footer";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -62,10 +64,16 @@ function getStepContent(step) {
 
 export default function Form() {
   const classes = useStyles();
+  const toast = useToast();
   const navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
+
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: localStorage.getItem("token"),
+  };
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -106,10 +114,22 @@ export default function Form() {
     });
   };
 
-  const handleReset = () => {
-    // setActiveStep(0);
-    alert("Thank You Enjoy your shopping!")
-    navigate("/")
+  const handleReset = async() => {
+    try {
+      const data = await axios.get('http://localhost:4500/user/get')
+      const res = await axios.post('http://localhost:4500/user/orders/post',data.data)
+      toast({
+        title: "Product",
+        description: res.data.msg,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      navigate("/")
+    } catch (e) {
+      console.log(e)
+    }
+    
   };
 
   return (
@@ -200,7 +220,7 @@ export default function Form() {
                           onClick={handleReset}
                           className={classes.button}
                         >
-                          Reset
+                         Finish Payment
                         </Button>
                       </div>
                     ) : (

@@ -15,68 +15,51 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { addToCart } from "../Redux/CartReducer/reducer";
-import { useDispatch} from 'react-redux';
 
-
-const SingleProduct = (dataId) => {
+const SingleProduct = () => {
   const toast = useToast();
-  const dispatch = useDispatch()
   const { _id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({});
-  const {product_image,mrp} = dataId
+
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: localStorage.getItem("token"),
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:4500/products/${_id}`).then((r) => {
       // console.log(r);
       setData(r.data[0]);
     });
-  }, [_id]);
+  }, []);
   
+  const {product_image, product_title,offer_price,quantity} = data
   // console.log(data)
   //  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // axios.defaults.headers = {
-  //   "Content-Type": "application/json",
-  //   Authorization: localStorage.getItem("token"),
-  // };
-  // const addProduct = (data) => {
-  //   axios
-  //     .post(
-  //       "http://localhost:4500/user/post",
-  //       { product: { product: _id, quntity: 1 } },
-  //       // { headers: { token: localStorage.getItem("token") } }
-  //     )
-  //     .then((r) => {
-  //       console.log(r.data)
-  //       if (r.data.msg==true) {
-  //         toast({
-  //           title: "Product",
-  //           description: r.data,
-  //           status: "success",
-  //           duration: 5000,
-  //           isClosable: true,
-  //         });
-  //       } else {
-  //         toast({
-  //           title: "Product",
-  //           description: r.data,
-  //           status: "error",
-  //           duration: 9000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       toast({
-  //         title: "Something went wrong",
-  //         description: e,
-  //         status: "error",
-  //         duration: 9000,
-  //         isClosable: true,
-  //       });
-  //     });
-  // };
+
+  // console.log(data)
+  const addProduct = async() => {
+    try{
+      const res = await axios
+      .post(
+        "http://localhost:4500/user/post",{product_image, product_title,offer_price,quantity}
+    
+      )
+        console.log(res.data)
+          toast({
+            title: "Product",
+            description: res.data.msg,
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+    }
+    catch(err){
+      console.log(err)
+    }
+  };
 
   const off = ((data.price - data.offPrice) * 100) / data.price;
   // console.log(off)
@@ -186,23 +169,12 @@ const SingleProduct = (dataId) => {
               <Button
                 size="lg"
                 colorScheme="red"
-                onClick={() => {
-                  dispatch(
-                    addToCart({
-                      userId: data._id,
-                      product_image,
-                      product_title,
-                      offer_price,
-                      quantity: 1,
-                    })
-                  );
-                onClick={(ele) => {
-                  dispatch(addToCart({_id,product_image,mrp}))
-                }}
+                onClick={(ele) => 
+                  addProduct(ele)
+                }
               >
                 ADD TO CART
               </Button>
-              <Link to="/Checkout.jsx">
                 <Button
                   size="lg"
                   colorScheme="yellow"
@@ -211,7 +183,7 @@ const SingleProduct = (dataId) => {
                 >
                   BUY NOW
                 </Button>
-              </Link>
+
             </Flex>
           </Box>
         </Box>
