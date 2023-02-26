@@ -3,7 +3,7 @@ import React from "react";
 import Carousel from "../Components/Carousel/Carousel";
 import CarouselBottom from "../Components/Carousel/CarouselBottom";
 import Footer from "../Components/Layout/Footer";
-import NavbarMain from "../Components/NavbarMain";
+import NavbarMain from "../Components/Layout/NavbarMain";
 import Sidebar from "../Components/Sidebar";
 
 const HomePage = () => {
@@ -13,7 +13,7 @@ const HomePage = () => {
         backgroundColor: "whitesmoke",
       }}
     >
-      <Flex gap="20px" py="20px" px={{ base: "0px", lg: "20px" }}>
+      <Flex gap="5px" py="20px" px={{ base: "0px", lg: "20px" }}>
         <Sidebar />
         <Flex direction="column" w={{ base: "100%", lg: "80%" }}>
           <Carousel />

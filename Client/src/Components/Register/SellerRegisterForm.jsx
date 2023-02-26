@@ -46,7 +46,7 @@ const SellerRegisterForm = () => {
   const handleSellerRegister = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4500/seller/register",
+        "https://unusual-cyan-cygnet.cyclic.app/seller/register",
         userInput
       );
       toast({

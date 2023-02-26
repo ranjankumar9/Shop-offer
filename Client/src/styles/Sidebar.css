@@ -3,6 +3,9 @@
   padding: 0;
   margin: 0;
 }
+body {
+  min-height: 100vh;
+}
 .sidebar-carousel-wrapper {
   display: flex;
 }
@@ -34,6 +37,7 @@
   font-weight: 400;
   text-transform: capitalize;
 }
+
 .flex {
   align-items: center;
   justify-content: start;
@@ -62,7 +66,7 @@
 .sidebar .flex:hover {
   box-shadow: rgba(41, 48, 48, 0.112) 0px 2px 1px 0px;
 }
-.sidebar .firstBlock > div {
+.sidebar .firstBlock div {
   color: grey;
   display: flex;
   margin-bottom: 10px;
@@ -72,12 +76,12 @@
   /* margin-left: 10px; */
   gap: 10px;
 }
-.sidebar .firstBlock .flex > img {
+.sidebar .firstBlock .flex img {
   border-radius: 20px;
   width: 15%;
 }
 
-.sidebar .secondBlock > div {
+.sidebar .secondBlock div {
   color: grey;
   display: flex;
   font-size: 14px;
@@ -87,10 +91,10 @@
   transition: all 0.3s;
   /* justify-content: center; */
 }
-.sidebar .secondBlock > div:hover {
+.sidebar .secondBlock div:hover {
   color: crimson;
 }
-.sidebar .thirdBlock > div {
+.sidebar .thirdBlock div {
   color: grey;
   display: flex;
   align-items: center;
@@ -234,4 +238,12 @@
 }
 .mySwiper-2 {
   height: 300px;
+}
+
+.section h2 {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: crimson;
+  font-weight: 600;
 }

@@ -10,14 +10,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 const Products = () => {
   // const { Categories } = useParams();
   const [price, setPrice] = useState("asc");
-  const [cate, setCate] = useState("mens");
+  const [cate, setCate] = useState("
+  const getData=async()=>{men's");
  
   const [order, setOrder] = useState("asc");
   // const [value, setValue] = useState([]);
   const [ProductData,setProductData]=useState([])
-  console.log("PRO",ProductData)
-const navigate=useNavigate()
-  const getData=async()=>{
+  con
     try{
       let res =await axios.get(`https://unusual-cyan-cygnet.cyclic.app/products?type=${cate}&sort=offer_price&order=${price}&_order=${order}`)
       setProductData(res.data)

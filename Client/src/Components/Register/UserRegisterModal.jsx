@@ -42,7 +42,7 @@ const UserRegisterModal = () => {
     onClose();
     try {
       const res = await axios.post(
-        "http://localhost:4500/user/register",
+        "https://unusual-cyan-cygnet.cyclic.app/user/register",
         userInput
       );
       toast({

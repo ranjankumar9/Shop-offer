@@ -37,7 +37,7 @@ const SellerLoginForm = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/seller/login",
+        "https://unusual-cyan-cygnet.cyclic.app/seller/login",
         userInput
       );
       if (res.data.token) {
