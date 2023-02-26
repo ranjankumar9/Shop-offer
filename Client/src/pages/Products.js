@@ -18,7 +18,7 @@ const Products = () => {
 const navigate=useNavigate()
   const getData=async()=>{
     try{
-      let res =await axios.get(`http://localhost:4500/products`)
+      let res =await axios.get(`https://unusual-cyan-cygnet.cyclic.app/products`)
       setProductData(res.data)
   // console.log(res.data)
     }catch(err){

@@ -29,7 +29,7 @@ const SellerProducts = () => {
   }, []);
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:4500/seller/delete/${id}`);
+      await axios.delete(`https://unusual-cyan-cygnet.cyclic.app/seller/delete/${id}`);
       toast({
         title: "Product Deleted.",
         description: "Product Deleted from Database.",

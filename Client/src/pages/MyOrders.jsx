@@ -14,7 +14,7 @@ const MyOrders = () => {
   
   const getcartdata = async() => {
     try {
-      const res = await axios.get('http://localhost:4500/user/orders/get')
+      const res = await axios.get('https://unusual-cyan-cygnet.cyclic.app/user/orders/get')
       console.log(res)
       setData(res.data)
     } catch (e) {

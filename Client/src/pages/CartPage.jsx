@@ -13,7 +13,7 @@ const CartPage = () => {
 
   const getcartdata = async () => {
     try {
-      const res = await axios.get("http://localhost:4500/user/get");
+      const res = await axios.get("https://unusual-cyan-cygnet.cyclic.app/user/get");
       console.log(res);
       setData(res.data);
     } catch (e) {

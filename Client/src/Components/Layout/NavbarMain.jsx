@@ -24,9 +24,9 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { BsBox, BsCart, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import UserLoginModal from "./Login/UserLoginModal";
-import UserRegisterModal from "./Register/UserRegisterModal";
-import { toastProps } from "../constant/constants";
+import UserLoginModal from "../Login/UserLoginModal";
+import UserRegisterModal from "../Register/UserRegisterModal";
+import { toastProps } from "../../constant/constants";
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
 
