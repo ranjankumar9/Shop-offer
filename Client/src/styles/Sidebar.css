@@ -37,6 +37,7 @@ body {
   font-weight: 400;
   text-transform: capitalize;
 }
+
 .flex {
   align-items: center;
   justify-content: start;
@@ -237,4 +238,12 @@ body {
 }
 .mySwiper-2 {
   height: 300px;
+}
+
+.section h2 {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: crimson;
+  font-weight: 600;
 }

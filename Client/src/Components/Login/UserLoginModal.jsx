@@ -37,7 +37,7 @@ const UserLoginModal = () => {
     onClose();
     try {
       const res = await axios.post(
-        "http://localhost:4500/user/login",
+        "https://unusual-cyan-cygnet.cyclic.app/user/login",
         userInput
       );
 

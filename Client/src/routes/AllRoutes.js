@@ -14,7 +14,7 @@ import SellerProducts from "../Components/Admin/Products/SellerProducts";
 import CartPage from "../pages/CartPage";
 import SingleProduct from "./../pages/SingleProduct";
 import Products from "../pages/Products";
-import Form from '../pages/Payment Page/Form'
+import Form from "../pages/Payment";
 import MyOrders from "../pages/MyOrders";
 
 const AllRoutes = () => {
@@ -26,12 +26,11 @@ const AllRoutes = () => {
 
       <Route path="/" element={<Layout />}>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/singleproduct/:_id" element={<SingleProduct />} />
+        <Route path="/singleproduct/:_id" element={<SingleProduct />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route exact path="/products" element={<Products />} />
-        <Route exact path="/payment" element={<Form />} />
-        <Route exact path="/myorders" element={<MyOrders/>} />
-
+        <Route path="/products" element={<Products />} />
+        <Route path="/payment" element={<Form />} />
+        <Route path="/myorders" element={<MyOrders />} />
         <Route exact path="/" element={<Admin />}>
           <Route path="/admin" element={<AdminProfile />} />
           {/* <Route path="/admin/create-category" element={<CreateCategory />} /> */}

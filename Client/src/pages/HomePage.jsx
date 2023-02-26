@@ -3,7 +3,7 @@ import React from "react";
 import Carousel from "../Components/Carousel/Carousel";
 import CarouselBottom from "../Components/Carousel/CarouselBottom";
 import Footer from "../Components/Layout/Footer";
-import NavbarMain from "../Components/NavbarMain";
+import NavbarMain from "../Components/Layout/NavbarMain";
 import Sidebar from "../Components/Sidebar";
 
 const HomePage = () => {

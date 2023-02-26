@@ -12,12 +12,12 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
-import Details from "./Details";
-import PaymentMode from "./PaymentMode";
-import Success from "./Success";
-import PayCard from "./PayCard";
-import axios from 'axios'
-import Footer from "./Footer";
+import Details from "../Components/Payment/Details";
+import PaymentMode from "../Components/Payment/PaymentMode";
+import Success from "../Components/Payment/Success";
+import PayCard from "../Components/Payment/PayCard";
+import axios from "axios";
+import Footer from "../Components/Payment/Footer";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +65,7 @@ function getStepContent(step) {
 export default function Form() {
   const classes = useStyles();
   const toast = useToast();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
@@ -85,12 +85,12 @@ export default function Form() {
 
   const handleNext = () => {
     let newSkipped = skipped;
-  
+
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
-    
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -114,10 +114,15 @@ export default function Form() {
     });
   };
 
-  const handleReset = async() => {
+  const handleReset = async () => {
     try {
-      const data = await axios.get('http://localhost:4500/user/get')
-      const res = await axios.post('http://localhost:4500/user/orders/post',data.data)
+      const data = await axios.get(
+        "https://unusual-cyan-cygnet.cyclic.app/user/get"
+      );
+      const res = await axios.post(
+        "https://unusual-cyan-cygnet.cyclic.app/user/orders/post",
+        data.data
+      );
       toast({
         title: "Product",
         description: res.data.msg,
@@ -125,11 +130,10 @@ export default function Form() {
         duration: 5000,
         isClosable: true,
       });
-      navigate("/")
+      navigate("/");
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-    
   };
 
   return (
@@ -220,7 +224,7 @@ export default function Form() {
                           onClick={handleReset}
                           className={classes.button}
                         >
-                         Finish Payment
+                          Finish Payment
                         </Button>
                       </div>
                     ) : (

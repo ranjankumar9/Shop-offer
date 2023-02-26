@@ -28,7 +28,7 @@ const SingleProduct = () => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:4500/products/${_id}`).then((r) => {
+    axios.get(`https://unusual-cyan-cygnet.cyclic.app/products/${_id}`).then((r) => {
       // console.log(r);
       setData(r.data[0]);
     });
@@ -44,7 +44,7 @@ const SingleProduct = () => {
     try{
       const res = await axios
       .post(
-        "http://localhost:4500/user/post",{product_image, product_title,offer_price,quantity}
+        "https://unusual-cyan-cygnet.cyclic.app/user/post",{product_image, product_title,offer_price,quantity}
     
       )
         console.log(res.data)

@@ -19,7 +19,7 @@ const CartItem = ({ id, image, title, price, discount, quantity,getcartdata}) =>
 
   const handleRemove = async() => {
     try {
-      let res = await axios.delete(`http://localhost:4500/user/delete/${id}`)
+      let res = await axios.delete(`https://unusual-cyan-cygnet.cyclic.app/user/delete/${id}`)
       getcartdata()
       toast({
         title: "CartItem",

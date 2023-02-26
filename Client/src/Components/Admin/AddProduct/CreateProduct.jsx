@@ -57,7 +57,7 @@ const CreateProduct = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/seller/post",
+        "https://unusual-cyan-cygnet.cyclic.app/seller/post",
         userInput
       );
 

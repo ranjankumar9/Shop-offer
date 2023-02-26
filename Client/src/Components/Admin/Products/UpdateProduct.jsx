@@ -56,7 +56,7 @@ const UpdateProduct = ({
   const handleUpdateProduct = async (id) => {
     try {
       const res = await axios.patch(
-        `http://localhost:4500/seller/update/${id}`,
+        `https://unusual-cyan-cygnet.cyclic.app/seller/update/${id}`,
         userInput
       );
       toast({
