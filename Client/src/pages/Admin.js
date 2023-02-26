@@ -6,7 +6,7 @@ import AdminMenu from "./../Components/Admin/AdminMenu/AdminMenu";
 const Admin = () => {
   return (
     <Flex
-      gap="25px"
+      gap="5px"
       justify={"space-between"}
       flexDirection={{ base: "column", sm: "column", md: "column", lg: "row" }}
       bg="gray.50"
