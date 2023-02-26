@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CartItem from "../Components/CartItem";
 import { Box, Button, Heading } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   axios.defaults.headers = {
     "Content-Type": "application/json",
@@ -13,7 +15,9 @@ const CartPage = () => {
 
   const getcartdata = async () => {
     try {
-      const res = await axios.get("https://unusual-cyan-cygnet.cyclic.app/user/get");
+      const res = await axios.get(
+        "https://unusual-cyan-cygnet.cyclic.app/user/get"
+      );
       console.log(res);
       setData(res.data);
     } catch (e) {
@@ -22,7 +26,7 @@ const CartPage = () => {
   };
 
   const handlePay = () => {
-    window.open("/payment");
+    navigate("/payment");
   };
 
   useEffect(() => {
@@ -47,12 +51,12 @@ const CartPage = () => {
               price={item.offer_price}
               quantity={item.quantity}
             />
-            <Box>
-              <Button onClick={handlePay}>Proceed To Pay</Button>
-            </Box>
           </div>
         ))
       )}
+      <Box>
+        <Button onClick={handlePay}>Proceed To Pay</Button>
+      </Box>
     </div>
   );
 };
