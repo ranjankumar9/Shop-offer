@@ -246,6 +246,10 @@ const Footer = () => {
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
+      position="relative"
+      bottom="0"
+      left="0"
+      w="100%"
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>

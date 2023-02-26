@@ -13,7 +13,7 @@ const HomePage = () => {
         backgroundColor: "whitesmoke",
       }}
     >
-      <Flex gap="20px" py="20px" px={{ base: "0px", lg: "20px" }}>
+      <Flex gap="5px" py="20px" px={{ base: "0px", lg: "20px" }}>
         <Sidebar />
         <Flex direction="column" w={{ base: "100%", lg: "80%" }}>
           <Carousel />
