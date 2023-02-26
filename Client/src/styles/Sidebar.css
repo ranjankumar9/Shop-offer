@@ -15,7 +15,9 @@
 .sidebar {
   position: relative;
   width: 20%;
-  margin-top: 20px;
+  border-radius: 3px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* margin-top: 20px; */
   /* height: 800px; */
   background-color: #fff;
   padding-left: 30px;
@@ -23,9 +25,39 @@
 .sidebar .categories {
   margin-bottom: 10px;
   margin-top: 20px;
-  font-size: larger;
+  font-size: 13px;
   display: flex;
   /* margin-left: 10px; */
+}
+.sidebar .categories h1 {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.flex {
+  align-items: center;
+  justify-content: start;
+}
+
+.flex h1 {
+  font-size: 10px;
+}
+.sub-category-heading {
+  text-align: left;
+}
+.sub-category-heading .item {
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  transition: all 0.3s;
+}
+.item:hover {
+  color: crimson;
+  cursor: pointer;
+}
+
+.flex h2 {
+  font-size: 14px;
 }
 .sidebar .flex:hover {
   box-shadow: rgba(41, 48, 48, 0.112) 0px 2px 1px 0px;
@@ -48,36 +80,41 @@
 .sidebar .secondBlock > div {
   color: grey;
   display: flex;
+  font-size: 14px;
+  align-items: center;
   margin-bottom: 10px;
   cursor: pointer;
+  transition: all 0.3s;
   /* justify-content: center; */
 }
 .sidebar .secondBlock > div:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: crimson;
 }
 .sidebar .thirdBlock > div {
   color: grey;
   display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  transition: all 0.3s;
   /* justify-content: center; */
 }
 .sidebar .thirdBlock > div:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: crimson;
 }
 .men-navbar {
   display: flex;
   justify-content: space-between;
   padding-left: 20px;
 }
-.men-navbar .column .section :hover {
+/* .men-navbar .column .section :hover {
   cursor: pointer;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
+} */
 .men-navbar h2 {
   margin-top: 10px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 15px;
   justify-items: baseline;
 }
 .men-navbar .section .item {
@@ -178,6 +215,13 @@
   .carousel-1 .slider-wrapper {
     margin-left: 40px;
     width: 100%;
+  }
+  .sidebar {
+    width: 0;
+    display: none;
+
+    /* padding: 0;
+    margin: 0; */
   }
 }
 .carousel-2 {

@@ -17,6 +17,7 @@ import PaymentMode from "./PaymentMode";
 import Success from "./Success";
 import PayCard from "./PayCard";
 import Footer from "./Footer";
+import { Navigate, useNavigate } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -61,6 +62,7 @@ function getStepContent(step) {
 
 export default function Form() {
   const classes = useStyles();
+  const navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
@@ -105,7 +107,9 @@ export default function Form() {
   };
 
   const handleReset = () => {
-    setActiveStep(0);
+    // setActiveStep(0);
+    alert("Thank You Enjoy your shopping!")
+    navigate("/")
   };
 
   return (

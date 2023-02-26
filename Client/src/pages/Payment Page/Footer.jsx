@@ -15,7 +15,7 @@ export default function Types() {
   return (
     <div className={classes.root} style={{margin:"auto"}}>
       <Typography variant="overline" display="block" gutterBottom>
-        Made by <a href="https://ranjankumar9.github.io/">Ranjan Kumar</a>
+        {/* Made by <a href="https://ranjankumar9.github.io/">Ranjan Kumar</a> */}
       </Typography>
     </div>
   );

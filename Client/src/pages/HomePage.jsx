@@ -1,3 +1,4 @@
+import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import Carousel from "../Components/Carousel/Carousel";
 import CarouselBottom from "../Components/Carousel/CarouselBottom";
@@ -7,14 +8,28 @@ import Sidebar from "../Components/Sidebar";
 
 const HomePage = () => {
   return (
-    <div style={{ backgroundColor: "whitesmoke" }}>
-      <div className="sidebar-carousel-wrapper">
+    <div
+      style={{
+        backgroundColor: "whitesmoke",
+      }}
+    >
+      <Flex gap="20px" py="20px" px={{ base: "0px", lg: "20px" }}>
         <Sidebar />
-        <div className="carousel-wrapper">
+        <Flex direction="column" w={{ base: "100%", lg: "80%" }}>
           <Carousel />
-          <CarouselBottom />
-        </div>
-      </div>
+        </Flex>
+      </Flex>
+      {/* <div className="sidebar-carousel-wrapper">
+        {/* <Flex>
+          <Sidebar />
+          <Carousel />
+        </Flex> */}
+
+      {/* <div className="carousel-wrapper">
+        <Carousel />
+        <CarouselBottom />
+      </div> */}
+      {/* </div> */}
     </div>
   );
 };

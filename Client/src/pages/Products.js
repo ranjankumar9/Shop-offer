@@ -7,7 +7,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const CategoryPage = () => {
+const Products = () => {
   const [price, setPrice] = useState("");
   const [order, setOrder] = useState("");
   const [value, setValue] = useState([]);
@@ -229,4 +229,4 @@ console.log("pro",ProductData)
   );
 };
 
-export default CategoryPage;
+export default Products;
