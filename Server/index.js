@@ -9,6 +9,7 @@ const {
   UserAuthenticate,
 } = require("./Middlewares/UserAutheticate.middleware");
 const { ClientCartRouter } = require("./Routes/Cart/ClientCart.routes");
+const { clientOrderRouter } = require("./Routes/Order/ClientOrder.routes");
 const { allProductsRouter } = require("./Routes/Products/AllProducts.routes");
 const {
   sellerProductsRouter,
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(json());
 app.use("/user", clientUserRouter);
 app.use("/user", UserAuthenticate, ClientCartRouter);
+app.use("/user/orders", UserAuthenticate, clientOrderRouter);
 app.use("/seller", sellerUserRouter);
 app.use("/seller", SellerAuthenticate, sellerProductsRouter);
 app.use("/products", allProductsRouter);
