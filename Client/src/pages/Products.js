@@ -47,8 +47,6 @@ const Products = () => {
     getData();
   }, [price, order, cate]);
 
-  
-
   return (
     <div className="CategoryPage">
       <div>
@@ -253,23 +251,25 @@ const Products = () => {
                       QUICK VIEW
                     </p>
                   </div>
-                  <p className="CategoryProductName">
-                    {/* {el.product_title} */}
-                    {el.product_title.length < 20
-                      ? el.product_title
-                      : `${el.product_title.slice(0, 20)}`}
-                  </p>
+                  <div className="product-details">
+                    <p className="CategoryProductName">
+                      {/* {el.product_title} */}
+                      {el.product_title.length < 20
+                        ? el.product_title
+                        : `${el.product_title.slice(0, 20)}`}
+                    </p>
 
-                  <div className="CategoryPriceDiv">
-                    <p className="CategoryPriceDiscount">Rs {el.mrp}</p>
-                    <p className="CategoryPrice">Rs.{el.offer_price}</p>
-                    <div className="CategoryOffer">
-                      <p>{el.product_discount}% Off</p>
+                    <div className="CategoryPriceDiv">
+                      <p className="CategoryPriceDiscount">Rs {el.mrp}</p>
+                      <p className="CategoryPrice">Rs.{el.offer_price}</p>
+                      <div className="CategoryOffer">
+                        <p>{el.product_discount}% Off</p>
+                      </div>
                     </div>
+                    <p className="CategoryRatting">
+                      4.5 ({el.product_rating_count})
+                    </p>
                   </div>
-                  <p className="CategoryRatting">
-                    4.5 ({el.product_rating_count})
-                  </p>
                 </div>
               ))}
 
