@@ -33,7 +33,7 @@ Node js
 ![home](https://user-images.githubusercontent.com/107936455/221484768-f6980371-1a42-4a9a-8f4c-55cdcb09d9eb.png)
 
 # Product Page
-![productpage](https://user-images.githubusercontent.com/107936455/221486230-d2975d4b-b1b4-4083-acf2-aed5abde78e3.png)
+![productpage](https://user-images.githubusercontent.com/107936455/221486896-7d726e90-6f7d-4b87-bfdf-c14ab60ddb7a.png)
 
 
 # Cart Page
