@@ -54,7 +54,8 @@ export default function NavbarMain() {
   return (
     <>
       <Box
-        bg={"#c6003d"}
+        // bg={"#c6003d"}
+        bg={"#e40046"}
         height={"30px"}
         justifyContent={"space-between"}
         display={{
@@ -66,6 +67,7 @@ export default function NavbarMain() {
         }}
         fontSize="15px"
         p={1}
+        px={4}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "45px" }}
         pr={{ base: "5px", sm: "10px", md: "20px", lg: "50px", xl: "60px" }}
       >
@@ -85,7 +87,8 @@ export default function NavbarMain() {
         position={"sticky"}
         zIndex={999}
         top={0}
-        bg={"#e40046"}
+        // bg={"#e40046"}
+        bg={"#ff3131"}
         px={4}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "40px" }}
         pr={{ base: "5px", sm: "10px", md: "20px", lg: "50px", xl: "60px" }}
@@ -102,11 +105,13 @@ export default function NavbarMain() {
             <Box>
               <Image
                 display={{ sm: "center", md: "center", lg: "center" }}
-                boxSize="60px"
+                // boxSize="60px"
                 width={"200px"}
-                objectFit="cover"
+                height={"50px"}
+                // objectFit="cover"
                 src={
-                  "https://www.logo.wine/a/logo/Snapdeal/Snapdeal-White-Dark-Background-Logo.wine.svg"
+                  // "https://www.logo.wine/a/logo/Snapdeal/Snapdeal-White-Dark-Background-Logo.wine.svg"
+                  "/images/_Logo.png"
                 }
               />
             </Box>
