@@ -33,7 +33,8 @@ Node js
 ![home](https://user-images.githubusercontent.com/107936455/221484768-f6980371-1a42-4a9a-8f4c-55cdcb09d9eb.png)
 
 # Product Page
-![home](https://user-images.githubusercontent.com/107936455/221484848-023b4bcc-c234-4966-88ea-31b2ca306858.png)
+![productpage](https://user-images.githubusercontent.com/107936455/221486230-d2975d4b-b1b4-4083-acf2-aed5abde78e3.png)
+
 
 # Cart Page
 ![Cartpage](https://user-images.githubusercontent.com/107936455/221485073-a43f8109-65c2-4b2a-891c-8f376997c1a6.png)
@@ -42,6 +43,7 @@ Node js
 ![Myorders](https://user-images.githubusercontent.com/107936455/221485151-3e2a38ef-9b5e-4940-8584-f32f2e6fe980.png)
 
 # Register 
+![Register](https://user-images.githubusercontent.com/107936455/221486144-8eb3c13e-1075-4cbb-ac5e-a90aca8dd6d7.png)
 
 
 # Login Section
