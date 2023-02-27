@@ -10,9 +10,12 @@ import {
   MenuItem,
   MenuList,
   Stack,
+  Spinner,
 } from "@chakra-ui/react";
+
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Loader from "../Components/Loader/Loader";
 
 const Products = () => {
   // const { Categories } = useParams();
@@ -22,17 +25,22 @@ const Products = () => {
   const [order, setOrder] = useState("asc");
   // const [value, setValue] = useState([]);
   const [ProductData, setProductData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   console.log("PRO", ProductData);
   const navigate = useNavigate();
   const getData = async () => {
     try {
+      setLoading(true);
       let res = await axios.get(
         `https://unusual-cyan-cygnet.cyclic.app/products?type=${cate}&sort=offer_price&order=${price}&_order=${order}`
       );
       setProductData(res.data);
+      setLoading(false);
       // console.log(res.data)
     } catch (err) {
       console.log("errr", err);
+      setError(true);
     }
     // /?type=womens&sort=offer_price&order=${price}&_order=${order}category=womens_footwear
   };
@@ -47,7 +55,9 @@ const Products = () => {
     getData();
   }, [price, order, cate]);
 
-  
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="CategoryPage">
@@ -253,23 +263,25 @@ const Products = () => {
                       QUICK VIEW
                     </p>
                   </div>
-                  <p className="CategoryProductName">
-                    {/* {el.product_title} */}
-                    {el.product_title.length < 20
-                      ? el.product_title
-                      : `${el.product_title.slice(0, 20)}`}
-                  </p>
+                  <div className="product-details">
+                    <p className="CategoryProductName">
+                      {/* {el.product_title} */}
+                      {el.product_title.length < 20
+                        ? el.product_title
+                        : `${el.product_title.slice(0, 20)}`}
+                    </p>
 
-                  <div className="CategoryPriceDiv">
-                    <p className="CategoryPriceDiscount">Rs {el.mrp}</p>
-                    <p className="CategoryPrice">Rs.{el.offer_price}</p>
-                    <div className="CategoryOffer">
-                      <p>{el.product_discount}% Off</p>
+                    <div className="CategoryPriceDiv">
+                      <p className="CategoryPriceDiscount">Rs {el.mrp}</p>
+                      <p className="CategoryPrice">Rs.{el.offer_price}</p>
+                      <div className="CategoryOffer">
+                        <p>{el.product_discount}% Off</p>
+                      </div>
                     </div>
+                    <p className="CategoryRatting">
+                      4.5 ({el.product_rating_count})
+                    </p>
                   </div>
-                  <p className="CategoryRatting">
-                    4.5 ({el.product_rating_count})
-                  </p>
                 </div>
               ))}
 
