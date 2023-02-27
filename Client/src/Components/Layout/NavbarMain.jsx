@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -27,6 +27,7 @@ import { Link } from "react-router-dom";
 import UserLoginModal from "../Login/UserLoginModal";
 import UserRegisterModal from "../Register/UserRegisterModal";
 import { toastProps } from "../../constant/constants";
+import axios from "axios";
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
 
@@ -46,6 +47,9 @@ const NavLink = ({ children }) => (
 );
 
 export default function NavbarMain() {
+  const [query, setQuery] = useState("");
+  const [show, setshow] = useState(true);
+  const [search, setsearch] = useState([]);
   const [showHam, setShowHam] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const toast = useToast();
@@ -57,10 +61,26 @@ export default function NavbarMain() {
       title: "Logged Out.",
     });
   };
+  const handleSearch = async () => {
+    console.log("search");
+    try {
+      const res = await axios.get(
+        `https://unusual-cyan-cygnet.cyclic.app/products?q=${query}`
+      );
+      console.log(res.data);
+      setsearch(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // useEffect(() => {
+  //   handleSearch();
+  // }, [query]);
 
   return (
     <>
       <Box
+        onClick={() => setshow(!show)}
         bg={"#c6003d"}
         height={"30px"}
         justifyContent={"space-between"}
@@ -128,6 +148,9 @@ export default function NavbarMain() {
               display={{ base: "none", md: "flex" }}
             >
               <Input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                // onChange={handlechange}
                 paddingLeft={5}
                 border={0}
                 bg="white"
@@ -143,6 +166,7 @@ export default function NavbarMain() {
               />
 
               <InputRightAddon
+                onClick={handleSearch}
                 children="Search"
                 color={"white"}
                 bg="black "
@@ -150,6 +174,32 @@ export default function NavbarMain() {
               />
             </InputGroup>
           </HStack>
+          {show ? (
+            <Box
+              height={"300px"}
+              overflowY="scroll"
+              position={"absolute"}
+              top={"50px"}
+              bg="white"
+              left={"230px"}
+              width={"40vw"}
+            >
+              {search?.map(({ _id, product_title, product_image }) => {
+                return (
+                  <Link key={_id} to={`/singleproduct/${_id}`}>
+                    <Flex
+                      justifyContent={"space-around"}
+                      alignItems={"center"}
+                      onClick={() => setshow(!show)}
+                    >
+                      <Image src={product_image} height={100} width={100} />
+                      <Text> {product_title}</Text>
+                    </Flex>
+                  </Link>
+                );
+              })}
+            </Box>
+          ) : null}
           <Flex alignItems={"center"}>
             <Menu>
               <MenuButton
