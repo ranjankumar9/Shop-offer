@@ -46,6 +46,7 @@ const CreateProduct = () => {
     product_discount,
     product_rating_count,
   } = userInput;
+  console.log({ product_image });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInput({ ...userInput, [name]: value });
@@ -56,7 +57,7 @@ const CreateProduct = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/seller/post",
+        "https://unusual-cyan-cygnet.cyclic.app/seller/post",
         userInput
       );
 

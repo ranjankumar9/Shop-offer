@@ -15,6 +15,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import { toastProps } from "../../constant/constants";
+import { useNavigate } from "react-router-dom";
 
 const SellerLoginForm = () => {
   const [userInput, setUserInput] = useState({
@@ -22,6 +24,7 @@ const SellerLoginForm = () => {
     pass: "",
   });
 
+  const navigate = useNavigate();
   const toast = useToast();
   const { email, pass } = userInput;
   const handleInputChange = (e) => {
@@ -34,39 +37,28 @@ const SellerLoginForm = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4500/seller/login",
+        "https://unusual-cyan-cygnet.cyclic.app/seller/login",
         userInput
       );
-
-      console.log(res);
-
       if (res.data.token) {
         toast({
-          title: "Seller Logged In Successfully.",
-          description: res.data.msg,
-          status: "success",
-          duration: 5000,
-          isClosable: true,
+          ...toastProps,
+          title: res.data.msg,
         });
         localStorage.setItem("token", res.data.token);
+        navigate("/admin");
       } else {
         toast({
-          title: "Seller Login Failed.",
-          description: res.data.msg,
+          ...toastProps,
+          title: res.data.msg,
           status: "error",
-          duration: 5000,
-          isClosable: true,
         });
       }
-
-      // console.log(res);
     } catch (error) {
       toast({
-        title: "Seller Login Failed.",
-        description: error.message,
+        ...toastProps,
+        title: error.message,
         status: "error",
-        duration: 5000,
-        isClosable: true,
       });
     }
 

@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-  email: { type: String, required: true },
   userId: { type: String, required: true },
-  items: { type: Array, required: true },
-  price: { type: String, required: true },
+  product_image: { type: String, required: true },
+  product_title: { type: String, required: true },
+  offer_price: { type: Number, required: true },
+  quantity: { type: Number, default: 1 },
+  orderStatus:{type:String, default:"Order Placed"},
   date: { type: String, default: new Date().toLocaleString() },
 });
 

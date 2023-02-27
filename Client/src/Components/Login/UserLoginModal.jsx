@@ -1,4 +1,4 @@
-import { Link, LinkOverlay, useDisclosure, useToast } from "@chakra-ui/react";
+import { useDisclosure, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import {
   Modal,
@@ -11,23 +11,22 @@ import {
   Button,
   FormControl,
   Input,
-  FormLabel,
 } from "@chakra-ui/react";
 import axios from "axios";
 
-const UserRegisterModal = () => {
+const UserLoginModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userInput, setUserInput] = useState({
-    name: "",
     email: "",
-    mobile: "",
     pass: "",
   });
+  
+
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
   const toast = useToast();
-  const { name, email, mobile, pass } = userInput;
+  const { email, pass } = userInput;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInput({ ...userInput, [name]: value });
@@ -38,41 +37,57 @@ const UserRegisterModal = () => {
     onClose();
     try {
       const res = await axios.post(
-        "http://localhost:4500/user/register",
+        "https://unusual-cyan-cygnet.cyclic.app/user/login",
         userInput
       );
-      toast({
-        title: res.data.msg,
-        description: res.data.msg,
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      console.log(res);
+
+      if (res.data.token) {
+        toast({
+          title: res.data.msg,
+          description: res.data.msg,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        localStorage.setItem("token", res.data.token);
+      } else {
+        toast({
+          title: "Login Failed.",
+          description: res.data.msg,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+
+      // console.log(res);
     } catch (error) {
       toast({
-        title: "User Registration Failed.",
-        description: "Failed to Add Product to Database.",
+        title: "Login Failed.",
+        description: error.message,
         status: "error",
         duration: 5000,
         isClosable: true,
       });
-      console.log(error);
     }
 
     setUserInput({
-      name: "",
       email: "",
-      mobile: "",
       pass: "",
     });
   };
 
   return (
     <>
-      <Link textDecoration="none" onClick={onOpen}>
-        Register
-      </Link>
+      <Button
+        bgColor="crimson"
+        colorScheme={"red"}
+        textDecoration="none"
+        onClick={onOpen}
+        w={"full"}
+      >
+        Login
+      </Button>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -81,29 +96,15 @@ const UserRegisterModal = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Login</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl className="form">
-              <Input
-                type="text"
-                placeholder="Enter Your Name"
-                name="name"
-                value={name}
-                onChange={handleInputChange}
-              />
               <Input
                 type="email"
                 placeholder="Enter Your Email"
                 name="email"
                 value={email}
-                onChange={handleInputChange}
-              />
-              <Input
-                type="tel"
-                placeholder="Enter Your Mobile No."
-                name="mobile"
-                value={mobile}
                 onChange={handleInputChange}
               />
               <Input
@@ -118,7 +119,7 @@ const UserRegisterModal = () => {
 
           <ModalFooter>
             <Button colorScheme="red" mr={3} onClick={handleUserRegister}>
-              Register
+              Login
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -127,4 +128,4 @@ const UserRegisterModal = () => {
   );
 };
 
-export default UserRegisterModal;
+export default UserLoginModal;

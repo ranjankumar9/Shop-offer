@@ -1,8 +1,7 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   IconButton,
   Text,
@@ -12,24 +11,22 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   Image,
   Input,
   InputGroup,
-  InputLeftAddon,
   InputRightAddon,
-  VStack,
+  useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { AiOutlineSearch } from "react-icons/ai";
-import snaplogo from "../Images/snaplogo.png";
 import { FaRegUserCircle } from "react-icons/fa";
-import { BsFillCartFill } from "react-icons/bs";
-import UserRegisterModal from "./sideBarhover/UserRegisterModal";
-import UserLoginModal from "./sideBarhover/UserLoginModal";
+import { RiAdminLine } from "react-icons/ri";
+import { BsBox, BsCart, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import UserLoginModal from "../Login/UserLoginModal";
+import UserRegisterModal from "../Register/UserRegisterModal";
+import { toastProps } from "../../constant/constants";
 
 const dropLinks = ["Men", "Women", "Kids", "Home & Kitchen", "Health Products"];
 
@@ -50,12 +47,21 @@ const NavLink = ({ children }) => (
 
 export default function NavbarMain() {
   const [showHam, setShowHam] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const toast = useToast();
+
+  const handleLogout = () => {
+    setToken(localStorage.removeItem("token"));
+    toast({
+      ...toastProps,
+      title: "Logged Out.",
+    });
+  };
 
   return (
     <>
       <Box
-        // bg={"#c6003d"}
-        bg={"#e40046"}
+        bg={"#c6003d"}
         height={"30px"}
         justifyContent={"space-between"}
         display={{
@@ -65,9 +71,9 @@ export default function NavbarMain() {
           sm: "none",
           base: "none",
         }}
-        fontSize="15px"
+        fontSize="12px"
+        fontWeight={400}
         p={1}
-        px={4}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "45px" }}
         pr={{ base: "5px", sm: "10px", md: "20px", lg: "50px", xl: "60px" }}
       >
@@ -86,37 +92,36 @@ export default function NavbarMain() {
         w={"100%"}
         position={"sticky"}
         zIndex={999}
-        top={0}
-        // bg={"#e40046"}
-        bg={"#ff3131"}
+        top={-1}
+        bg={"#e40046"}
         px={4}
         pl={{ base: "5px", sm: "10px", md: "20px", lg: "30px", xl: "40px" }}
         pr={{ base: "5px", sm: "10px", md: "20px", lg: "50px", xl: "60px" }}
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
+            variant="unstyled"
+            color="white"
             size={"md"}
-            icon={showHam ? <CloseIcon /> : <HamburgerIcon />}
+            icon={showHam ? <CloseIcon /> : <HamburgerIcon fontSize={"25px"} />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={() => setShowHam(!showHam)}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>
-              <Image
-                display={{ sm: "center", md: "center", lg: "center" }}
-                // boxSize="60px"
-                width={"200px"}
-                height={"50px"}
-                // objectFit="cover"
-                src={
-                  // "https://www.logo.wine/a/logo/Snapdeal/Snapdeal-White-Dark-Background-Logo.wine.svg"
-                  "/images/_Logo.png"
-                }
-              />
-            </Box>
-            {/* <Flex gap={"100px"} display={{ base: "none", md: "flex" }}> */}
-            {/* <Input width={"500px"} display={{ base: "none", md: "flex" }} /> */}
+            <Link to="/">
+              <Box>
+                <Image
+                  display={{ sm: "center", md: "center", lg: "center" }}
+                  boxSize="60px"
+                  width={"200px"}
+                  objectFit="cover"
+                  src={
+                    "https://www.logo.wine/a/logo/Snapdeal/Snapdeal-White-Dark-Background-Logo.wine.svg"
+                  }
+                />
+              </Box>
+            </Link>
             <InputGroup
               size="sm"
               placeholder="Search Products and Brands"
@@ -144,18 +149,6 @@ export default function NavbarMain() {
                 cursor={"pointer"}
               />
             </InputGroup>
-            {/* <Box>Cart</Box> */}
-            {/* </Flex> */}
-
-            {/* <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              {dropLinks.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack> */}
           </HStack>
           <Flex alignItems={"center"}>
             <Menu>
@@ -166,47 +159,14 @@ export default function NavbarMain() {
                 cursor={"pointer"}
                 minW={0}
               >
-                <HStack
-                  as={"nav"}
-                  spacing={4}
+                <Flex
+                  gap={"2"}
+                  alignItems="center"
+                  fontSize="14px"
+                  color={"#fff"}
                   display={{ base: "none", lg: "flex" }}
-                >
-                  <Flex gap={"2"}>
-                    <Box
-                      color={"white"}
-                      fontSize={{
-                        xl: "25px",
-                        lg: "16px",
-                        md: "13px",
-                        base: "10px",
-                      }}
-                      display={"flex "}
-                      gap="10px"
-                    >
-                      cart
-                    </Box>
-                    <Box
-                      color={"white"}
-                      mt="6px"
-                      fontSize={{
-                        xl: "25px",
-                        lg: "16px",
-                        md: "18px",
-                        base: "16px",
-                      }}
-                    >
-                      <BsFillCartFill />
-                    </Box>
-                  </Flex>
-                </HStack>
-                {/* <Avatar size={"sm"} src={"./Images/projectlogo.png"} /> */}
+                ></Flex>
               </MenuButton>
-              {/* <MenuList>
-                <MenuItem>mens</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList> */}
             </Menu>
           </Flex>
           <Flex alignItems={"center"}>
@@ -218,55 +178,73 @@ export default function NavbarMain() {
                 cursor={"pointer"}
                 minW={0}
               >
-                <HStack
-                  as={"nav"}
-                  spacing={4}
-                  //   display={{ base: "flex", md: "flex" }}
-                >
+                {/* <HStack as={"nav"} spacing={4}>
                   <Flex gap={"2"}>
-                    <Box
-                      color={"white"}
-                      fontSize={{
-                        xl: "25px",
-                        lg: "16px",
-                        md: "18px",
-                        base: "16px",
-                      }}
-                      display={"flex "}
-                      gap="10px"
-                    >
-                      SignIn
-                    </Box>
-                    <Box
-                      color={"white"}
-                      mt="6px"
-                      fontSize={{
-                        xl: "25px",
-                        lg: "16px",
-                        md: "13px",
-                        base: "0",
-                      }}
-                      //   display={{ base: "none", md: "none" }}
-                    >
-                      <FaRegUserCircle />
-                    </Box>
+                    <Box color={"white"} mt="6px" fontSize="20px"> */}
+                <FaRegUserCircle fontSize={"20px"} color={"#fff"} />
+                {/* </Box>
                   </Flex>
-                </HStack>{" "}
+                </HStack> */}
                 {/* <Avatar size={"sm"} src={"./Images/projectlogo.png"} /> */}
               </MenuButton>
               <MenuList>
-                <MenuItem>mens</MenuItem>
                 <MenuItem>
-                  <Link to="/seller/register">Become A Seller</Link>
+                  <Link to="/myorders">
+                    <Flex justify="center" align={"center"} gap="10px">
+                      <BsBox fontSize={"16px"} />
+                      <Text fontSize="14px">Your Orders</Text>
+                    </Flex>
+                  </Link>
                 </MenuItem>
-                <MenuDivider />
                 <MenuItem>
-                  <UserRegisterModal />
+                  <Link to="/">
+                    <Flex justify="center" align={"center"} gap="10px">
+                      <BsHeart fontSize={"16px"} />
+                      <Text fontSize="14px">Wishlist</Text>
+                    </Flex>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/cart">
+                    <Flex justify="center" align={"center"} gap="10px">
+                      <BsCart fontSize={"16px"} />
+                      <Text fontSize="14px">Cart</Text>
+                    </Flex>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/seller/register">
+                    <Flex justify="center" align={"center"} gap="10px">
+                      <RiAdminLine fontSize={"16px"} />
+                      <Text fontSize="14px">Become A Seller</Text>
+                    </Flex>
+                  </Link>
                 </MenuItem>
 
-                <MenuItem>
-                  <UserLoginModal />
-                </MenuItem>
+                <MenuDivider />
+
+                {!token ? (
+                  <>
+                    <MenuItem>
+                      <UserRegisterModal />
+                    </MenuItem>
+                    <MenuItem>
+                      <UserLoginModal />
+                    </MenuItem>
+                  </>
+                ) : (
+                  <MenuItem>
+                    <Button
+                      bgColor="crimson"
+                      colorScheme={"red"}
+                      textDecoration="none"
+                      onClick={handleLogout}
+                      w={"full"}
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
+                )}
               </MenuList>
             </Menu>
           </Flex>

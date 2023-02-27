@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import Homekichenhover from "./sideBarhover/homekichenhover";
 import ToyKidsHover from "./sideBarhover/ToykidsHover";
 import BeautyHover from "./sideBarhover/beautyHover";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [showHoverContent, setShowHoverContent] = useState({
@@ -32,57 +33,70 @@ const Sidebar = () => {
       </div>
 
       <div className="firstBlock">
-        <div
-          className="flex"
-          onMouseEnter={() => {
-            SetHoverContent("men");
-          }}
-        >
-          <img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30mobile4.png" />
-          <h2>Men's Fashion</h2>
-        </div>
-        <div
-          className="flex"
-          onMouseEnter={() => {
-            SetHoverContent("women");
-          }}
-        >
-          <img src="https://i2.sdlcdn.com/img/leftnavicon09/30x30home_living2.png" />
-          <h2>Women's Fashion</h2>
-        </div>
-        <div
-          className="flex"
-          onMouseEnter={() => {
-            SetHoverContent("home");
-          }}
-        >
-          <img src="https://n2.sdlcdn.com/imgs/c/0/x/Homekitchenfurnishing-3eda1.jpg" />
-          <h2> Home & Kitchen</h2>
-        </div>
-        <div
-          className="flex"
-          onMouseEnter={() => {
-            SetHoverContent("toy");
-          }}
-        >
-          <img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30music1.png" />
-          <h2>Toy's,Kids,Fashion & More</h2>
-        </div>
-        <div
-          className="flex"
-          onMouseEnter={() => {
-            SetHoverContent("beauty");
-          }}
-        >
-          <img src="https://i1.sdlcdn.com/img/leftnavicon09/fashion30x30_3.png" />
-          <h2>Beauty & Health Products</h2>
-        </div>
+        <Link to="/products">
+          <div
+            className="flex"
+            onMouseEnter={() => {
+              SetHoverContent("men");
+            }}
+          >
+            <img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30mobile4.png" />
+            <h2>Men's Fashion</h2>
+          </div>
+        </Link>
+        <Link to="/products">
+          <div
+            className="flex"
+            onMouseEnter={() => {
+              SetHoverContent("women");
+            }}
+          >
+            <img src="https://i2.sdlcdn.com/img/leftnavicon09/30x30home_living2.png" />
+            <h2>Women's Fashion</h2>
+          </div>
+        </Link>
+
+        <Link to="/products">
+          <div
+            className="flex"
+            onMouseEnter={() => {
+              SetHoverContent("home");
+            }}
+          >
+            <img src="https://n2.sdlcdn.com/imgs/c/0/x/Homekitchenfurnishing-3eda1.jpg" />
+            <h2> Home & Kitchen</h2>
+          </div>
+        </Link>
+
+        <Link to="/products">
+          <div
+            className="flex"
+            onMouseEnter={() => {
+              SetHoverContent("toy");
+            }}
+          >
+            <img src="https://i3.sdlcdn.com/img/leftnavicon09/30x30music1.png" />
+            <h2>Toy's,Kids,Fashion & More</h2>
+          </div>
+        </Link>
+
+        <Link to="/products">
+          <div
+            className="flex"
+            onMouseEnter={() => {
+              SetHoverContent("beauty");
+            }}
+          >
+            <img src="https://i1.sdlcdn.com/img/leftnavicon09/fashion30x30_3.png" />
+            <h2>Beauty & Health Products</h2>
+          </div>
+        </Link>
       </div>
       <div className="categories">
         <h1>More Categories</h1>
       </div>
-      <div className="secondBlock">
-        <div>Automotives</div>
+      <div className="secondBlock ">
+        <div className="item">Automotives</div>
         <div>Mobiles & Accesories</div>
         <div>Electronics</div>
         <div>Sports, Fitness & Outdoor</div>
@@ -91,30 +105,30 @@ const Sidebar = () => {
         <div>Hobbies</div>
       </div>
       <div className="categories">
-        <h1>TRENDING SEARCHES</h1>
+        <h1>Trending Searches</h1>
       </div>
       <div className="thirdBlock">
-        <div>
+        <div className="center">
           <CiSearch />
           Kitchen Product
         </div>
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Shoes for Men
         </div>
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Kurti Set
         </div>
 
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Sandal Men
         </div>
-        <div>
+        <div className="center">
           {" "}
           <CiSearch />
           Sport shoe Men
