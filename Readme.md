@@ -4,10 +4,9 @@ Backend Deployed Link :- https://unusual-cyan-cygnet.cyclic.app
 Frontend Deployed Link :- https://shopoffer.vercel.app/
 
 
-
 # ShopOffer.com
-
-Clone of HealthKart a shopping website for Medicine where you can find all latest arrivals in medicine, supplement, Vitamins and all kind of health accessory
+Clone of Snapdeal
+Snapdeal is an Indian e-commerce company, based in New Delhi, India. It was founded in February 2010 by Kunal Bahl and Rohit Bansal. Snapdeal was one of the largest online marketplaces in India.
 
 
 # Team Members
