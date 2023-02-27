@@ -1,9 +1,34 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Orders = () => {
   const [orderStatus, setOrderStatus] = useState("pending");
   // console.log(orderStatus);
+  const [ordersList, setOrdersList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: localStorage.getItem("token"),
+  };
+
+  const getProducts = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        "https://unusual-cyan-cygnet.cyclic.app/user/orders/get"
+      );
+      console.log(res);
+      setOrdersList(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
     <table className="table">
       <thead>

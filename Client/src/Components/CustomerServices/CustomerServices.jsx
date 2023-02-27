@@ -10,8 +10,6 @@ const CustomerServices = () => {
     <HStack
       className="hide-scrollbar"
       py="20px"
-      //   border="1px solid red"
-      // gap="10px"
       w={{ base: "99%", sm: "99%", md: "95%", lg: "80%" }}
       m="20px auto"
       overflowX="auto"
@@ -21,8 +19,6 @@ const CustomerServices = () => {
         gap="15px"
         align={"center"}
         justify={"center"}
-        // m="auto"
-        // border="1px solid red"
         direction={{
           base: "column",
           sm: "column",
