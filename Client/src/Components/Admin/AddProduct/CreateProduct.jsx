@@ -16,10 +16,10 @@ const CreateProduct = () => {
     category: "",
     product_image: "",
     product_title: "",
-    mrp: "",
-    offer_price: "",
-    product_discount: "",
-    product_rating_count: "",
+    mrp: null,
+    offer_price: null,
+    product_discount: null,
+    product_rating_count: null,
   });
 
   const types = ["mens", "womens", "home", "kids", "beauty"];
@@ -154,28 +154,28 @@ const CreateProduct = () => {
           onChange={handleInputChange}
         />
         <Input
-          type="text"
+          type="number"
           placeholder="Enter Product Market Retail Price"
           name="mrp"
           value={mrp}
           onChange={handleInputChange}
         />
         <Input
-          type="text"
+          type="number"
           placeholder="Enter Product Offer Price"
           name="offer_price"
           value={offer_price}
           onChange={handleInputChange}
         />
         <Input
-          type="text"
+          type="number"
           placeholder="Enter Product Discount %"
           name="product_discount"
           value={product_discount}
           onChange={handleInputChange}
         />
         <Input
-          type="text"
+          type="number"
           placeholder="Enter Product Rating"
           name="product_rating_count"
           value={product_rating_count}

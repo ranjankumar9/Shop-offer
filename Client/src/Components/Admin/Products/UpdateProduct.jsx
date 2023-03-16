@@ -138,28 +138,28 @@ const UpdateProduct = ({
                 onChange={handleInputChange}
               />
               <Input
-                type="text"
+                type="number"
                 placeholder="Enter Product Market Retail Price"
                 name="mrp"
                 value={userInput.mrp}
                 onChange={handleInputChange}
               />
               <Input
-                type="text"
+                type="number"
                 placeholder="Enter Product Offer Price"
                 name="offer_price"
                 value={userInput.offer_price}
                 onChange={handleInputChange}
               />
               <Input
-                type="text"
+                type="number"
                 placeholder="Enter Product Discount %"
                 name="product_discount"
                 value={userInput.product_discount}
                 onChange={handleInputChange}
               />
               <Input
-                type="text"
+                type="number"
                 placeholder="Enter Product Rating"
                 name="product_rating_count"
                 value={userInput.product_rating_count}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Box,
   Flex,
@@ -48,11 +48,13 @@ const NavLink = ({ children }) => (
 
 export default function NavbarMain() {
   const [query, setQuery] = useState("");
-  const [show, setshow] = useState(true);
-  const [search, setsearch] = useState([]);
+  const id = useRef(null);
+  const [showSearchItems, setShowSearchItems] = useState(false);
+  const [searchItems, setSearchItems] = useState([]);
   const [showHam, setShowHam] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const toast = useToast();
+  const searchListRef = useRef(null);
 
   const handleLogout = () => {
     setToken(localStorage.removeItem("token"));
@@ -61,26 +63,53 @@ export default function NavbarMain() {
       title: "Logged Out.",
     });
   };
-  const handleSearch = async () => {
-    console.log("search");
-    try {
-      const res = await axios.get(
-        `https://unusual-cyan-cygnet.cyclic.app/products?q=${query}`
-      );
-      console.log(res.data);
-      setsearch(res.data);
-    } catch (error) {
-      console.log(error);
+
+  const handleOutsideClick = (e) => {
+    console.log(
+      "clicked at body ",
+      e.target,
+      !searchListRef.current.contains(e.target)
+    );
+    if (searchListRef.current && !searchListRef.current.contains(e.target)) {
+      console.log("clicked inside");
+      setShowSearchItems(false);
     }
   };
-  // useEffect(() => {
-  //   handleSearch();
-  // }, [query]);
+
+  useEffect(() => {
+    document.body.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.body.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  const handleChangeWithDebounce = async (e) => {
+    setQuery(e.target.value);
+
+    if (id.current) {
+      clearInterval(id.current);
+    }
+    id.current = setTimeout(async () => {
+      try {
+        const res = await axios.get(
+          `https://unusual-cyan-cygnet.cyclic.app/products?q=${query}`
+        );
+        console.log(res.data);
+        setSearchItems(res.data);
+        if (res.data.length > 0) {
+          setShowSearchItems(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }, 500);
+
+    console.log(id);
+  };
 
   return (
     <>
       <Box
-        onClick={() => setshow(!show)}
         bg={"#c6003d"}
         height={"30px"}
         justifyContent={"space-between"}
@@ -149,8 +178,7 @@ export default function NavbarMain() {
             >
               <Input
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                // onChange={handlechange}
+                onChange={handleChangeWithDebounce}
                 paddingLeft={5}
                 border={0}
                 bg="white"
@@ -165,32 +193,40 @@ export default function NavbarMain() {
                 placeholder="Search products & Brands"
               />
 
-              <InputRightAddon
-                onClick={handleSearch}
+              {/* <InputRightAddon
+                // onClick={handleSearch}
                 children="Search"
                 color={"white"}
                 bg="black "
                 cursor={"pointer"}
-              />
+              /> */}
             </InputGroup>
           </HStack>
-          {show ? (
+          {showSearchItems ? (
             <Box
               height={"300px"}
               overflowY="scroll"
+              overflowX="hidden"
               position={"absolute"}
               top={"50px"}
               bg="white"
               left={"230px"}
               width={"40vw"}
+              borderRadius="5px"
+              boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
+              ref={searchListRef}
             >
-              {search?.map(({ _id, product_title, product_image }) => {
+              {searchItems?.map(({ _id, product_title, product_image }) => {
                 return (
                   <Link key={_id} to={`/singleproduct/${_id}`}>
                     <Flex
-                      justifyContent={"space-around"}
+                      justifyContent={"start"}
                       alignItems={"center"}
-                      onClick={() => setshow(!show)}
+                      textAlign={"center"}
+                      p={"20px"}
+                      gap={"20px"}
+                      boxShadow="rgba(0, 0, 0, 0.16) 0px 1px 4px"
+                      onClick={() => setShowSearchItems(!showSearchItems)}
                     >
                       <Image src={product_image} height={100} width={100} />
                       <Text> {product_title}</Text>
@@ -302,9 +338,11 @@ export default function NavbarMain() {
 
         {showHam ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
+            <Stack as={"nav"} spacing={4} color="#fff" fontWeight={500}>
               {dropLinks.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Link to="/products" key={link}>
+                  {link}
+                </Link>
               ))}
             </Stack>
           </Box>

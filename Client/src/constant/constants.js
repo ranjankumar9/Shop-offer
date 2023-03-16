@@ -4,9 +4,20 @@ export const toastProps = {
   status: "success",
 };
 
-export const types = ["mens", "womens", "home", "kids", "beauty"];
+export const types = ["mens", "womens", "home", "kids"];
 export const categories = {
-  mens: ["bags", "clothing", "eyewear", "footwear", "sportswear"],
-  womens: ["watches", "cluthes", "makeup", "fragrance", "clothing"],
-  home: ["kitchen", "electronics", "adsfg", "ccs", "cccdd"],
+  mens: [
+    "mens_bags",
+    "mens_clothing",
+    "mens_eyewear",
+    "mens_footwear",
+    "mens_sportswear",
+  ],
+  womens: [
+    "womens_ethnic",
+    "womens_footwear",
+    "womens_jewellery",
+    "womens_perfumes",
+  ],
+  home: ["kids_clothing", "kids_toys"],
 };

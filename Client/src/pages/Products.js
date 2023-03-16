@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../Style/CategoryPage.css";
-import { AiOutlineDown, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineDown } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import {
   Button,
@@ -14,8 +14,9 @@ import {
 } from "@chakra-ui/react";
 
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+// import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../Components/Loader/Loader";
+import Card from "../Components/Card";
 
 const Products = () => {
   // const { Categories } = useParams();
@@ -28,7 +29,7 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   console.log("PRO", ProductData);
-  const navigate = useNavigate();
+
   const getData = async () => {
     try {
       setLoading(true);
@@ -241,48 +242,7 @@ const Products = () => {
             </div>
             <div className="CategoryProductMainDiv">
               {ProductData?.map((el, i) => (
-                <div key={i} className="CategorySingleProduct">
-                  <div className="CategoryHeart">
-                    <p>
-                      {" "}
-                      <AiOutlineHeart />
-                    </p>
-                  </div>
-                  <img
-                    src={
-                      el.product_image
-                        ? el.product_image
-                        : "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"
-                    }
-                    //  src="https://n1.sdlcdn.com/imgs/k/m/o/230X258_sharpened/ShoeRise-Men-Canvas-Sports-Casual-SDL408958518-1-64e89.webp"
-                    alt=""
-                  />
-                  <div className="CategoryProductView">
-                    <p onClick={() => navigate(`/singleproduct/${el._id}`)}>
-                      {" "}
-                      QUICK VIEW
-                    </p>
-                  </div>
-                  <div className="product-details">
-                    <p className="CategoryProductName">
-                      {/* {el.product_title} */}
-                      {el.product_title.length < 20
-                        ? el.product_title
-                        : `${el.product_title.slice(0, 20)}`}
-                    </p>
-
-                    <div className="CategoryPriceDiv">
-                      <p className="CategoryPriceDiscount">Rs {el.mrp}</p>
-                      <p className="CategoryPrice">Rs.{el.offer_price}</p>
-                      <div className="CategoryOffer">
-                        <p>{el.product_discount}% Off</p>
-                      </div>
-                    </div>
-                    <p className="CategoryRatting">
-                      4.5 ({el.product_rating_count})
-                    </p>
-                  </div>
-                </div>
+                <Card key={i} data={el} />
               ))}
 
               {/* ....... */}
