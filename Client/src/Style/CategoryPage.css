@@ -27,13 +27,15 @@
 }
 .CategoryProductMainDiv {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
   background-color: white;
   padding: 20px 0;
 }
 
 .CategorySingleProduct {
-  /* border: 1px solid rgb(233, 229, 229); */
   width: 250px;
   /* width: 25%; */
   margin: auto;
@@ -42,6 +44,7 @@
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
+  border-radius: 5px;
   transition: all 0.5s;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   position: relative;

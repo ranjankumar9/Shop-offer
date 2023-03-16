@@ -46,7 +46,7 @@ const SellerLoginForm = () => {
           title: res.data.msg,
         });
         localStorage.setItem("token", res.data.token);
-        navigate("/admin");
+        navigate("/admin/create-product");
       } else {
         toast({
           ...toastProps,
